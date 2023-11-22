@@ -207,7 +207,6 @@ if (isset($_GET['act'])) {
         $listthongke = loadall_thongke();
             $sldm=soluong_danhmuc();
             $slsp=soluong_sanpham();
-           
             include 'home.php';
            
             break;
@@ -216,7 +215,6 @@ if (isset($_GET['act'])) {
     $listthongke = loadall_thongke();
             $sldm=soluong_danhmuc();
             $slsp=soluong_sanpham();
-            
     include 'home.php';
 }
 include "footer.php";
