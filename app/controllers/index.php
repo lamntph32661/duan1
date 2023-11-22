@@ -204,11 +204,19 @@ if (isset($_GET['act'])) {
             break;
 
         default:
+        $listthongke = loadall_thongke();
+            $sldm=soluong_danhmuc();
+            $slsp=soluong_sanpham();
+           
             include 'home.php';
            
             break;
     }
 } else {
+    $listthongke = loadall_thongke();
+            $sldm=soluong_danhmuc();
+            $slsp=soluong_sanpham();
+            
     include 'home.php';
 }
 include "footer.php";
