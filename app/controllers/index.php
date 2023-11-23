@@ -22,22 +22,28 @@ if (isset($_GET['act'])) {
             }
             break;
             case "thembanner":
-                if (isset($_POST['themmoi']) && $_POST['themmoi']) { 
-                    $ten_banner = $_POST['tenbanner'];
-                    $hinh = $_FILES['hinh']['name'];
-                $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/";
-                $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    // echo "The file ". htmlspecialchars( basename( $_FILES["hinh"]["name"])). " has been uploaded.";
-                } else {
-                    // echo "Sorry, there was an error uploading your file.";
+                $err="";
+                function checkinput($data) {
+                    $data=trim($data);
+                    $data=htmlspecialchars($data);
+                    return $data;
                 }
-                    $link = $_POST['link'];
-                    insert_banner($ten_banner, $hinh, $link);
-                    $thongbao = "thêm thành công";
-                } else {
-                    $thongbao = "Lỗi";
-                }include "banner/thembanner.php";
+                if($_SERVER['REQUEST_METHOD']=="POST"){
+                    $target_dir="uploads/";
+                    $target_file= $target_dir.basename($_FILES['url_image']['name']);
+                
+                    if(empty($_POST['acc'])||empty($_POST['pas'])||empty($_FILES['url_image']['name']))
+                    $err='vui long nhap';
+                    else{
+                        $ten_banner= checkinput($_POST['acc']);
+                        $pas= checkinput($_POST['pas']);
+                        $url_image=$_FILES['url_image']['name'];
+                        move_uploaded_file($_FILES['url_image']['tmp_name'],$target_file);
+                        insert_banner($ten_banner, $url_image, $pas);
+                       
+                    }
+                }
+                include "banner/thembanner.php";
                 break;
                 case "danhsachbanner":
                     $listbanner = loadall_banner();
@@ -47,7 +53,7 @@ if (isset($_GET['act'])) {
                     if (isset($_GET['id_banner']) && ($_GET['id_banner'] > 0)) {
                         delete_banner($_GET['id_banner']);
                     }
-                    $list = loadall_banner();
+                    $listbanner = loadall_banner();
                     include "banner/danhsachbanner.php";
                     break;
                 case "capnhatbanner":
@@ -57,18 +63,19 @@ if (isset($_GET['act'])) {
                     include "banner/capnhatbanner.php";
                     break;
                 case 'updatebanner':
-                    if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                        $ten_banner = $_POST['tenbanner'];
-                        $hinh = $_FILES['hinh']['name'];
-                        $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/";
-                        $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
-                        if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                        } else {
-                        }
-                        $link = $_POST['link'];
-                        update_banner($id_banner, $ten_banner, $hinh, $link);
-                        $thongbao = "cập nhật thành công";
-                    }
+                    // if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                    //     $ten_banner = $_POST['tenbanner'];
+                    //     $hinh = $_FILES['hinh']['name'];
+                    //     $target_dir = "uploads/";
+                    //     $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
+                    //     if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                    //     } else {
+                    //     }
+                    //     $link = $_POST['link'];
+                    //     update_banner($id_banner, $ten_banner, $hinh, $link);
+                    //     $thongbao = "cập nhật thành công";
+                    // }
+                    
                     include "banner/danhsachbanner.php";
                     break;
         // case "home":
@@ -115,7 +122,7 @@ if (isset($_GET['act'])) {
                 $so_luong = $_POST['soluong'];
                 $mo_ta = $_POST['motasp'];
                 $hinh = $_FILES['hinh']['name'];
-                $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/";
+                $target_dir = "uploads/";
                 $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
                 if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
                     // echo "The file ". htmlspecialchars( basename( $_FILES["hinh"]["name"])). " has been uploaded.";
@@ -158,7 +165,7 @@ if (isset($_GET['act'])) {
                 $mo_ta = $_POST['motasp'];
                 $so_luong = $_POST['soluong'];
                 $hinh = $_FILES['hinh']['name'];
-                $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/";
+                $target_dir = "uploads/";
                 $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
                 move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file);
                 update_sanpham($ten_san_pham, $hinh, $gia, $giam_gia, $mo_ta, $so_luong, $id_danh_muc, $id_san_pham);
