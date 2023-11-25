@@ -67,19 +67,14 @@
                     $i=0;
 foreach ($spnew as $sp) {
     extract($sp);
-    $img="C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/" .$hinh;
-    if($i==3||$i==6||$i==9){
-        $mr="";
-    }else{
-        $mr="mr";
-    }
+    
     $linksp="index.php?act=sanphamct&id_san_pham=".$id_san_pham;
     echo '
 							<div class="col-md-3 col-sm-4 col-xs-12">
 								<div class="main_cat_item">
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 271px; height: 351px;"></a>
+                                        <a href="'.$linksp.'"><img src="/app/controllers/uploads/' . $hinh . '" alt=""  style="width: 271px; height: 351px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
