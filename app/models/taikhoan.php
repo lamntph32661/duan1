@@ -5,3 +5,9 @@ function checkuser($user, $pass)
     $sp = pdo_query_one($sql);
     return $sp;
 }
+function loaduser($id)
+{
+    $sql = "select * from nguoi_dung where id_nguoi_dung=".$id;
+    $sp = pdo_query_one($sql);
+    return $sp;
+}

@@ -16,5 +16,8 @@
           <a href="index.php?act=danhsachdanhmuc" class="btn btn-success">Danh sách</a>
         </div>
     </form>
+    <?php
+
+    ?>
   </div>
 </nav>

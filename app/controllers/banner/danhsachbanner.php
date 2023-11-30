@@ -34,11 +34,11 @@
                      <tr>
                       <td>'.$id_banner.'</td>
                       <td>'.$ten_banner.'</td>
-                      <td>'.$hinh.'</td>
+                      <td><img src="/public/uploads/' . $hinh . '" alt="" height="80"></td>
                       <td>'.$link.'</td>
                       <td>
                       <a href="index.php?act=xoabanner&id_banner='.$id_banner.'">
-                      <input  class="btn btn-success" type="button" value="Xóa"></a>
+                      <input  class="btn btn-success" type="button" value="Xóa"  onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
                 <a href="index.php?act=capnhatbanner&id_banner='.$id_banner.'"><input  class="btn btn-success" type="button" value="cập nhật"></a>
             </td>
                     </tr>

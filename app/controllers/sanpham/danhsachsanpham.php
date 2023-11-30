@@ -5,15 +5,19 @@
         <div class="card-header">
           <h3 class="card-title">Danh sách sản phẩm</h3>
           <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 200px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+          <form action="index.php?act=danhsachsanpham" method="post" style="display: flex;">
+                <input type="text" name="kyw" id="" class="form-control float-right" placeholder="Search" style=" margin-right: 10px;">
+                <select name="iddm" id="" class="form-control"  style=" margin-right: 10px;">
+                    <option value="0" selected>Tất cả</option>
+                    <?php
+                    foreach ($listdanhmuc as $danhmuc) {
+                        extract($danhmuc);
+                        echo '<option value="' . $id_danh_muc . '">' . $ten_danh_muc . '</option>';
+                    }
+                    ?>
+                </select>
+                <input type="submit" name="listok" value="Search" class="btn btn-default">
+            </form>
           </div>
         </div>
         <!-- /.card-header -->
@@ -39,7 +43,7 @@
                   extract($sanpham);
                   $suasp = "index.php?act=capnhatsp&id_san_pham=" . $id_san_pham;
                   $xoasp = "index.php?act=xoasp&id_san_pham=" . $id_san_pham;
-                  $hinhpath = "/public/assets/uploads/" . $hinh;
+                  $hinhpath = "uploads/" . $hinh;
                   if (is_file($hinhpath)) {
                     $img = "<img src='" . $hinhpath . "' height='80'>";
                   } else {
@@ -48,7 +52,7 @@
                   echo '<tr>
     <td>' . $id_san_pham . '</td>
     <td>' . $ten_san_pham . '</td>
-    <td><img src="/public/assets/uploads/' . $hinh . '" alt="" height="80"></td>
+    <td><img src="/public/uploads/' . $hinh . '" alt="" height="80"></td>
     <td>' . $gia . '</td>
     <td>' . $giam_gia . '</td>
     <td>' . $mo_ta . '</td>
@@ -56,7 +60,7 @@
     <td>' . $id_danh_muc . '</td>
 
     <td><a href="' . $suasp . '" ><input type="button" class="btn btn-success" value="Sửa"></a>
-    <a href="' . $xoasp . '"><input type="button" class="btn btn-danger" value="Xóa"></a>
+    <a href="' . $xoasp . '"><input type="button" class="btn btn-danger" value="Xóa" onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
     </tr>';
                 }
                 ?>

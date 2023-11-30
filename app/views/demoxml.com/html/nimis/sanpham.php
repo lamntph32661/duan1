@@ -74,7 +74,7 @@ foreach ($spnew as $sp) {
 								<div class="main_cat_item">
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/app/controllers/uploads/' . $hinh . '" alt=""  style="width: 271px; height: 351px;"></a>
+                                        <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 271px; height: 351px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>

@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,10 +70,9 @@ session_start();
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <?php
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['user'])&&isset($_SESSION['pass'])) {
         $user = $_SESSION['user'];
-        
-        
+        $pass = $_SESSION['pass'];
         echo ' <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             <img src="/public/assets/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
@@ -86,6 +83,7 @@ session_start();
         </div>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <a href="/app/controllers/login-form-20/logout.php" class="d-block">Logout</a>
+        <a href="index.php?act=thongtincanhan" class="d-block">Thông tin</a>
         </div>';
     } else {
         echo ' <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -146,7 +144,7 @@ session_start();
             </a>
           </li>
           <li class="nav-item">
-            <a href="index.php?act=danhsachtaikhoan" class="nav-link">
+            <a href="index.php?act=danhsachnguoidung" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Tài khoản
@@ -174,6 +172,14 @@ session_start();
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Thống kê
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/app/views/demoxml.com/html/nimis/index.php" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Vào trang web
               </p>
             </a>
           </li>

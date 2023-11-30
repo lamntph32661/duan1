@@ -36,7 +36,7 @@
                       <td>'.$ten_danh_muc.'</td>
                       <td>
                       <a href="index.php?act=xoadanhmuc&id_danh_muc='.$id_danh_muc.'">
-                      <input  class="btn btn-success" type="button" value="Xóa"></a>
+                      <input  class="btn btn-danger" type="button" value="Xóa"  onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
                 <a href="index.php?act=capnhatdanhmuc&id_danh_muc='.$id_danh_muc.'"><input  class="btn btn-success" type="button" value="cập nhật"></a>
             </td>
                     </tr>

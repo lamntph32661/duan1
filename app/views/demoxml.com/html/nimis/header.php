@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <!--[if lt IE 7 ]> <html lang="en" class="ie6">    <![endif]-->
@@ -16,8 +20,7 @@
 	<title>NIMIS | Home Page 1</title>
 
 	<!-- fonts files -->
-	<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,400italic,600,600italic,700,700italic'
-		rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Cabin:400,500,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 
@@ -60,39 +63,82 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	<style>
+		
+	</style>
 </head>
 
 <body>
 
 	<div class="header_top">
 		<div class="container">
-			<div class="row">
+			<div class="row"><a href=""></a>
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="header_top_left">
 						<img src="images/car.png" alt="Header Car Icon" />
 						<p>get free! shipping on order over <span>$100</span></p>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
+				<?php
+				if (!isset($_SESSION['user']) || !isset($_SESSION['pass']))
+					echo '<div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="header_top_right floatright">
-						<p><a href="#">login</a> / <a href="#">register</a></p>
-						<nav class="currency alignleft">
-							<ul>
-								<li><a href="#">USD</a>
-									<ul class="currency-dropdown">
-										<li><a href="#">EUR</a></li>
-										<li><a href="#">GBP</a></li>
-										<li><a href="#">CAD</a></li>
-										<li><a href="#">AUD</a></li>
-									</ul>
-								</li>
-							</ul>
-						</nav>
-						<div class="top-flag alignleft">
-							<img src="images/flag.png" alt="Flags" />
-						</div>
+						<p><a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php">login</a> / <a href="/app/views/demoxml.com/html/nimis/login-form-20/sigup.php">register</a></p>
+						
 					</div>
-				</div>
+				</div>';
+				else {
+					$onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
+					extract($onenguoidung);
+					if ($role_id == 4 || $role_id == 5) {
+						$logadmin = '<a href="/app/controllers/index.php">Login Admin</a>';
+					} else $logadmin = "";
+					echo '<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="header_top_right floatright">
+						<p><a href="#">' . $_SESSION['user'] . '</a> / ' . $logadmin . ' /
+						<a href="/app/views/demoxml.com/html/nimis/login-form-20/logout.php">Log out</a></p>
+						
+					</div>
+				</div>';
+				}
+
+				?>
+
+				<?php
+				// if (!isset($_SESSION['user'])) {
+				// 	echo '<li>
+				// 			<div class="dropdown dropdown-access">
+				// 			<a href="index.php?act=dangnhap" class="access_link"><span>Account</span></a>
+				// 			<div class="dropdown-menu">
+				// 				<a href="index.php?act=dangky" class="btn_1">Sign Up</a>
+				// 				<div class="divider"><span>OR</span></div>
+				// 				<a href="index.php?act=dangnhap" class="btn_1">Sign In</a>
+
+				// 			</div> 
+				// 			</div>
+				// 			</li>';
+				// } else {
+				// 	echo '<li>
+				// 			<div class="dropdown dropdown-access">
+				// 			<a href="index.php?act=account" class="access_link"><span>Account</span></a>
+				// 			<div class="dropdown-menu">
+				// 				<ul>
+				// 					<li>
+				// 						<a href=""><i class="ti-package"></i>My Orders</a>
+				// 					</li>
+				// 					<li>
+				// 						<a href="index.php?act=taikhoan"><i class="ti-user"></i>My Profile</a>
+				// 					</li>
+				// 					<li>
+				// 						<a href="logout.php"><i class="ti-help-alt"></i>Log Out</a>
+				// 					</li>
+				// 				</ul>
+				// 			</div> 
+				// 			</div>
+				// 			</li>';
+				// }
+
+				?>
 			</div>
 		</div>
 	</div>
@@ -113,8 +159,7 @@
 				<div class="col-md-3 col-sm-4 col-xs-12">
 					<div class="header_right floatright">
 						<ul class="checkout">
-							<li class="mobi_right_li"><a href="#"><i
-										class="fa fa-shopping-cart"></i>checklist</a></li>
+							<li class="mobi_right_li"><a href="#"><i class="fa fa-shopping-cart"></i>checklist</a></li>
 						</ul>
 
 					</div>
@@ -125,20 +170,32 @@
 	<section class="nav_area">
 		<div class="container">
 			<div class="nav_left floatleft">
-				<a href="index.php?act=category-1">category<i class="fa fa-bars"></i></a>
+				<a href="index.php?act=category-1_loc">category<i class="fa fa-bars"></i></a>
 				<div class="cat_mega_menu">
 					<div class="cat_left">
-						<h5>Shirts</h5>
+						
 						<div class="cat_menu_line"></div>
-						<ul class="cat_nav">
-							<li><a href="#">check shirts</a></li>
-							<li><a href="#">denim shirts</a></li>
-							<li><a href="#">long sleeve shirts</a></li>
-							<li><a href="#">denim shirts</a></li>
-							<li><a href="#">long sleeve shirts</a></li>
+						<ul class="cat_nav"><?php $i=0; foreach ($dsdm as $dm) {$i++;
+                                            extract($dm);
+											$linkdm = "index.php?act=sanpham&id_danh_muc=" . $id_danh_muc;
+											if($i!=7&&$i!=13)
+                                            
+                                            echo '<li><a href="' . $linkdm . '">' . $ten_danh_muc . '</a></li>';
+											else echo '</ul>
+						
+					</div>
+					<div class="cat_left">
+						
+						<div class="cat_menu_line"></div>
+						<ul class="cat_nav"><li><a href="' . $linkdm . '">' . $ten_danh_muc . '</a></li>';
+                                        }
+                                        ?>
+							
+						
+							
 						</ul>
 					</div>
-					<div class="cat_middle">
+					<!-- <div class="cat_middle">
 						<h5>T Shirts</h5>
 						<div class="cat_menu_line"></div>
 						<ul class="cat_nav">
@@ -159,7 +216,7 @@
 							<li><a href="#">tailored fit</a></li>
 							<li><a href="#">tight fit</a></li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="cat_img">
 						<img src="images/menu_cat.png" alt="" />
 					</div>
@@ -169,85 +226,68 @@
 				<nav class="mainmenu">
 					<ul id="nav">
 						<li><a href="index.php">Home</a>
-							<ul id="sub-menu4">
-								<li><a href="index.php?act=home">Home Version Two</a></li>
-							</ul>
+							
 						</li>
 						<li><a href="index.php?act=danhsachsanpham">Shop</a>
 							<ul id="sub-menu7">
-								<li><a href="index.php?act=danhsachsanpham">Sản phẩm</a></li>
-								<?php	foreach ($dsdm as $dm) {
-                extract($dm);
-                $linkdm = "index.php?act=sanpham&id_danh_muc=" . $id_danh_muc;
-                echo '<li><a href="' . $linkdm . '">' . $ten_danh_muc . '</a></li>';
-            }
-            ?>
-								
+								<!-- <li><a href="index.php?act=danhsachsanpham">Sản phẩm</a></li>
+								<?php
+								// 					foreach ($dsdm as $dm) {
+								//     extract($dm);
+								//     $linkdm = "index.php?act=sanpham&id_danh_muc=" . $id_danh_muc;
+								//     echo '<li><a href="' . $linkdm . '">' . $ten_danh_muc . '</a></li>';
+								// }
+								?> -->
+
 							</ul>
 						</li>
-						<li><a href="index.php?act=category-1">accessories</a>
-							<ul id="sub-menu">
-								<li><a href="#">check shirts</a></li>
-								<li><a href="#">denim shirts</a></li>
-								<li><a href="#">long sleeve shirts</a></li>
-								<li><a href="#">plain shirts</a></li>
-								<li><a href="#">printed shirts</a></li>
-								<li><a href="#">short sleeve shirts</a></li>
-								<li class="last-child"><a href="#">shortsleeve denim shirts</a></li>
-							</ul>
+						<li><a href="index.php?act=trangthaidonhang">order</a>
+							
 						</li>
 					</ul>
 				</nav>
 			</div>
 			<div class="nav_right floatright">
-				<a href="index.php?act=cart"><img src="images/bag.png" alt="Bag" />cart: 2 items</a>
+				<a href="index.php?act=viewcart"><img src="images/bag.png" alt="Bag" />cart: <?=sizeof($_SESSION['giohang'])?> items</a>
 				<div class="cart_menu">
-					<div class="cart_items">
+					<?php  $tong=0;
+						foreach ($_SESSION['giohang'] as $dh) {
+							echo '
+							<div class="cart_items">
 						<div class="c_item_img floatleft">
-							<a href="index.php?act=product-detail"><img src="images/c_item1.jpg" alt="" /></a>
+							<a href="'.$dh[3].'"><img src="/public/uploads/' . $dh[2] . '" alt="" style="height: 80px;"></a>
 						</div>
 						<div class="c_item_totals floatleft">
 							<div class="c_item_totals_detail floatleft">
-								<a href="index.php?act=product-detail">
-									<h5>men’s fashion blue jean coat</h5>
+								<a href="'.$dh[3].'">
+									<h5>'.$dh[1].'</h5>
 								</a>
-								<span>2 x $ 130.00</span>
+								<span>'.$dh[5].' x $ '.$dh[4].'</span>
 							</div>
 							<div class="close_icon_cart floatleft">
 								<img src="images/close.png" alt="" />
 							</div>
 						</div>
 					</div>
-					<div class="cart_items">
-						<div class="c_item_img floatleft">
-							<a href="index.php?act=product-detail"><img src="images/c_item2.jpg" alt="" /></a>
-						</div>
-						<div class="c_item_totals floatleft">
-							<div class="c_item_totals_detail floatleft">
-								<a href="index.php?act=product-detail">
-									<h5>men’s fashion blue jean coat</h5>
-								</a>
-								<span>2 x $ 130.00</span>
-							</div>
-							<div class="close_icon_cart floatleft">
-								<img src="images/close.png" alt="" />
-							</div>
-						</div>
-					</div>
+							';$tong+=$dh[5]*$dh[4];
+						}
+					?>
+					
+					
 					<div class="cart_totals">
 						<div class="c_totals_left floatleft">
 							<p>Free shipping</p>
 						</div>
 						<div class="c_totals_right floatleft">
-							<p>total $350</p>
+							<p>total $<?=$tong?></p>
 						</div>
 					</div>
 					<div class="cart_view_bottom">
 						<div class="c_totals_left floatleft">
-							<a href="index.php?act=cart">View Cart</a>
+							<a href="index.php?act=viewcart">View Cart</a>
 						</div>
 						<div class="c_totals_right floatleft">
-							<a href="checkout.html">Check Out</a>
+							<a href="index.php?act=checkout">Check Out</a>
 						</div>
 					</div>
 				</div>
@@ -266,14 +306,11 @@
 						<ul>
 							<li class='has-sub'>
 								<a href='index.php'><span>Home</span></a>
-								<ul class="sub-nav">
-									<li><a href="index.php"><span>Home 1</span></a></li>
-									<li><a href="index-2.html"><span>Home 2</span></a></li>
-								</ul>
+								
 							</li>
 
 							<li class='has-sub'>
-								<a href='index.php?act=category-1'><span>category</span></a>
+								<a href='index.php?act=category-1_loc'><span>category</span></a>
 								<ul>
 									<li class='has-sub'>
 										<a href='#'><span>Shirts</span></a>
@@ -313,8 +350,7 @@
 											<div class="clearfix"></div>
 											<div class="row in1">
 												<div class="col-md-6">
-													<a href="#"><img src="images/menu_cat.png" class="img-responsive"
-															alt="" /></a>
+													<a href="#"><img src="images/menu_cat.png" class="img-responsive" alt="" /></a>
 												</div>
 												<div class="col-md-6">
 												</div>
@@ -333,7 +369,7 @@
 								<a href='index.php?act=category-2'><span>shop</span></a>
 							</li>
 							<li class='has-sub'>
-								<a href='index.php?act=category-1'><span>accessories</span></a>
+								<a href='index.php?act=category-1_loc'><span>accessories</span></a>
 								<ul class="sub-nav">
 									<li><a href="#"><span>check shirts</span></a></li>
 									<li><a href="#"><span>denim shirts</span></a></li>
@@ -347,10 +383,10 @@
 							<li class='has-sub'>
 								<a href='#'><span>pages</span></a>
 								<ul id="sub-nav">
-									<li><a href="index.php?act=category-1">Category page</a></li>
+									<li><a href="index.php?act=category-1_loc">Category page</a></li>
 									<li><a href="index.php?act=category-2">Category page without filter</a></li>
 									<li><a href="checkout.html">Checkout page</a></li>
-									<li><a href="index.php?act=cart">Cart page</a></li>
+									<li><a href="index.php?act=viewcart">Cart page</a></li>
 									<li><a href="index.php?act=product-detail">Product detail page</a></li>
 									<li><a href="blog.html">Blog</a></li>
 									<li><a href="single-blog.html">Blog single</a></li>
@@ -362,7 +398,7 @@
 								<a href='blog.html'><span>Blog</span></a>
 							</li>
 							<li>
-								<a href='index.php?act=cart'><span>cart</span></a>
+								<a href='index.php?act=viewcart'><span>cart</span></a>
 							</li>
 						</ul>
 					</div>

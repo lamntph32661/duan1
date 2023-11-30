@@ -38,6 +38,7 @@ include "C:/Users/PC TGDD/Desktop/duan1/app/models/taikhoan.php";
 				$check_user = checkuser($_POST['login_username'], $_POST['login_password']);
 				if ($check_user) {
 					$_SESSION['user']=$_POST['login_username'];
+					$_SESSION['pass']=$_POST['login_password'];
 					header("location:/app/controllers/index.php");
 				
 				} else{

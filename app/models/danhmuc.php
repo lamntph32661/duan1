@@ -6,7 +6,7 @@ function insert_danhmuc($tenloai)
 }
 function loadall_danhmuc()
 {
-    $sql = "select * from danh_muc order by ten_danh_muc";
+    $sql = "select * from danh_muc where 1 order by ten_danh_muc desc";
     $listdanhmuc = pdo_query($sql);
     return $listdanhmuc;
 }
@@ -18,7 +18,9 @@ function count_danhmuc()
 }
 function delete_danhmuc($tenloai)
 {
-    $sql = "delete from danh_muc where id_danh_muc=" . $tenloai;
+    $sql = "DELETE danh_muc, san_pham FROM danh_muc 
+    LEFT JOIN san_pham ON danh_muc.id_danh_muc = san_pham.id_danh_muc WHERE danh_muc.id_danh_muc= ".$tenloai;
+   // $sql = "delete from danh_muc where id_danh_muc=" . $tenloai;
     pdo_execute($sql);
 }
 function loadone_danhmuc($id_danh_muc)

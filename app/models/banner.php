@@ -18,11 +18,11 @@ function loadone_banner($id) {
                        $banner= pdo_query_one($sql);
                        return $banner;
 }
-function update_banner($ten_banner, $hinh, $link, $id_banner){
+function update_banner($id_banner,$ten_banner, $hinh, $link ){
     if($hinh!="")
     $sql="update banner set ten_banner='".$ten_banner."', hinh='".$hinh."', link='".$link."' where id_banner=".$id_banner;
     else 
-    $sql="update banner set ten_banner='".$ten_banner."', hinh='".$hinh."', link='".$link."' where id_banner=".$id_banner;
+    $sql="update banner set ten_banner='".$ten_banner."', link='".$link."' where id_banner=".$id_banner;
                                 pdo_execute($sql);
 }
 ?>

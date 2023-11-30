@@ -234,7 +234,7 @@ foreach ($spnew as $sp) {
 							
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
+                                        <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
@@ -280,7 +280,7 @@ foreach ($spnew as $sp) {
 							
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
+                                        <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
@@ -325,7 +325,7 @@ foreach ($spnew as $sp) {
 							
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
+                                        <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
@@ -370,7 +370,7 @@ foreach ($spnew as $sp) {
 							
 									<div class="item">
 										<div class="item-img">
-                                        <a href="'.$linksp.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
+                                        <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>

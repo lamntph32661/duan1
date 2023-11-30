@@ -31,17 +31,17 @@ extract($onesp);
 									<ul class="nav nav-tabs product_detail_zoom_tab" role="tablist">
 										<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">
 												<div class="small_img">
-													<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
+													<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
 												</div>
 											</a></li>
 										<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
 												<div class="small_img">
-													<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
+													<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
 												</div>
 											</a></li>
 										<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
 												<div class="small_img">
-													<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
+													<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 70px; height: 75px;">
 												</div>
 											</a></li>
 									</ul>
@@ -50,21 +50,21 @@ extract($onesp);
 									<div class="tab-content">
 										<div role="tabpanel" class="tab-pane active" id="home">
 											<div class="single_p_image">
-												<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
+												<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
 												<!-- <a href="images/single-large.jpg" data-lightbox="image-1" data-title="My caption"><img src="images/product-plus.png" alt="" /></a>
 										<img id="zoom_02" src="images/Product-Details-04.jpg" data-zoom-image="images/single-large.jpg" alt=""/> -->
 											</div>
 										</div>
 										<div role="tabpanel" class="tab-pane" id="profile">
 											<div class="single_p_image">
-												<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
+												<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
 												<!-- <a href="images/single-large1.png" data-lightbox="image-1" data-title="My caption"><img src="images/product-plus.png" alt="" /></a>
 										<img id="zoom_03" src="images/product_detail_05.png" data-zoom-image="images/single-large1.png" alt=""/> -->
 											</div>
 										</div>
 										<div role="tabpanel" class="tab-pane" id="messages">
 											<div class="single_p_image">
-												<img src="/public/assets/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
+												<img src="/public/uploads/<?= $hinh ?>" alt="" style="width: 271px; height: 351px; object-fit: cover;">
 												<!-- <a href="images/single-large2.png" data-lightbox="image-1" data-title="My caption"><img src="images/product-plus.png" alt="" /></a>
 										<img id="zoom_04" src="images/product_detail_06.png" data-zoom-image="images/single-large2.png" alt=""/> -->
 											</div>
@@ -308,7 +308,7 @@ foreach ($sp_cung_loai as $sp) {
 							
 									<div class="item">
 										<div class="item-img">
-                                        <a href="index.php?act=product-detail&id_san_pham='.$id_san_pham.'"><img src="/public/assets/uploads/' . $hinh . '" alt=""  style="width: 260px; height: 336.75px;"></a>
+                                        <a href="index.php?act=product-detail&id_san_pham='.$id_san_pham.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 260px; height: 336.75px;"></a>
 											<div class="tr-add-cart">
 												<ul>
 													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>

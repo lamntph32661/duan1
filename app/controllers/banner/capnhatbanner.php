@@ -10,7 +10,7 @@ if(is_array($banner)){
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form  class="ml-5" action="index.php?act=updatebanner " method="POST">
+    <form  class="ml-5" action="index.php?act=updatebanner " method="POST" enctype="multipart/form-data">
       <div class="card-body">
         <div class="form-group">
           <label for="exampleInputEmail1">Tên Banner</label>
@@ -18,10 +18,10 @@ if(is_array($banner)){
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Hình Banner</label>
-          <img src="/public/assets/uploads/<?=$hinh?>" alt="" height="80">
+          <img src="/public/uploads/<?=$hinh?>" alt="" height="80">
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile">
+              <input type="file" name="hinh_new" class="custom-file-input" id="exampleInputFile">
               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
             </div>
             <div class="input-group-append">
@@ -30,10 +30,10 @@ if(is_array($banner)){
           </div>
           <div class="form-group">
           <label for="exampleInputPassword1">Link</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>">
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>">
         </div>
         <div class="card-footer">
-        <input type="hidden" name="id" value="<?php if(isset($id_banner)&&($id_banner!="")) echo $id_banner?>">
+        <input type="hidden" name="id_banner" value="<?php if(isset($id_banner)&&($id_banner!="")) echo $id_banner?>">
           <input type="submit" value="Submit" class="btn btn-primary" name="capnhat">
           <input class="btn btn-secondary" type="reset" value="Nhập lại">
           <a href="index.php?act=danhsachbanner" class="btn btn-success">Danh sách</a>

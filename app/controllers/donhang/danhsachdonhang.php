@@ -7,12 +7,9 @@
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 200px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
+            
+            <a href="index.php?act=lichsumuahang"><input class="btn btn-success" type="button" value="Lịch sử mua hàng" style="margin-left: 6px; border: 1px solid white;"></a>
+
             </div>
           </div>
         </div>
@@ -22,19 +19,43 @@
             <table class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
-                  <td>Tên sản phẩm</td>
-                  <td>Khách hàng</td>
-                  <td>Chi Tiết</td>
+                  <td>Mã đơn hàng</td>
+                  <td>Người nhận</td>
+                  <td>Ngày đặt hàng</td>
+                  <td>Tổng tiền</td>
                   <td>Trạng thái</td>
+                  <td>Chức năng</td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>áo sơmi</td>
-                  <td>Nguyễn Văn A</td>
-                  <td><a href="index.php?act=chitietdonhang"><input  class="btn btn-success" type="button" value="Xem"></a></td>
-                  <td>Đang giao</td>
-                </tr>
+                <?php
+                //array_reverse($loadall_donhang) đảo vị trí các phần tử từ dưới lên trên
+                foreach (array_reverse($loadall_donhang) as $dh) {
+                  extract($dh);
+                  if ($trang_thai == "chờ xác nhận") $s1 = "selected";
+                  else $s1 = "";
+                  if ($trang_thai == "đang chuẩn bị hàng") $s2 = "selected";
+                  else $s2 = "";
+                  if ($trang_thai == "đang giao") $s3 = "selected";
+                  else $s3 = "";
+                  if ($trang_thai == "đã giao") $s4 = "selected";
+                  else $s4 = "";
+                  if ($trang_thai == "đã nhận") $s5 = "selected";
+                  else $s5 = "";
+
+                  echo '<tr>
+                  <td>' . $id_don_hang . '</td>
+                  <td>' . $ten_nguoi_nhan . '</td>
+                  <td>' . $ngay_dat_hang . '</td>
+                  <td>' . $tong_tien . '</td>
+                  <td>
+'.$trang_thai.'
+  </td>
+                  <td><a href="index.php?act=chitietdonhang&id='.$id_don_hang.'"><input class="btn btn-info" type="button" value="Chi tiết"></a></td>
+                </tr>';
+                }
+                ?>
+
               </tbody>
             </table>
 

@@ -30,7 +30,7 @@ if (is_array($sanpham)) {
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Hình sản phẩm</label>
-          <img src="/public/assets/uploads/<?=$hinh?>" alt="" height="80">
+          <img src="/public/uploads/<?=$hinh?>" alt="" height="80">
           <div class="input-group">
             <div class="custom-file">
               <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile">
