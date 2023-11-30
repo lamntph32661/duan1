@@ -16,6 +16,7 @@
 </div>
 <?php
 extract($onesp);
+$linksp = "index.php?act=product-detail&id_san_pham=" . $id_san_pham;
 ?>
 <section class="gray_tshirt_area">
 	<div class="container">
@@ -160,12 +161,22 @@ extract($onesp);
 												<div class="color_heading">
 													<h5>Quantity</h5>
 												</div>
-												<div class="color_detail">
+												<?php
+								$ktdn=""; if(!isset($_SESSION['user'])) 
+    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class=""><input type="button" name="btnaddcart" value="ADD TO CART"  onclick="return confirm(\' Vui lòng đăng nhập\')"  style="background-color: rgb(253,253,253,0.6); border: none;"></a>';
+    else $ktdn= '<input type="submit" name="btnaddcart" value="ADD TO CART"  style="background-color: rgb(253,253,253,0.6); border: none;" >
+    '; ?>
+												<form action="index.php?act=addtocart" method="post">
+							<input type="hidden" name="id_san_pham" value="<?=$id_san_pham?>">
+							<input type="hidden" name="ten_san_pham" value="<?= $ten_san_pham ?>">
+							<input type="hidden" name="hinh" value="<?= $hinh ?>">
+							<input type="hidden" name="linksp" value="<?= $linksp ?>">	
+							<input type="hidden" name="giam_gia" value="<?= $giam_gia ?>">	<div class="color_detail">
 													<div class="size_down">
-														<input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity[113]" max="119" min="0" step="1">
+														<input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="sl" max="<?=$so_luong?>" min="0" step="1">
 													</div>
-													<div class="size_cart">
-														<a href="#">Add to cart</a>
+												<div class="size_cart">	
+													<a href=""><?=$ktdn?></a>
 													</div>
 													<div class="size_heart">
 														<a href="#"><img src="images/Product-Details-heart.png" alt="" /></a>
@@ -174,7 +185,7 @@ extract($onesp);
 														<a href="#"><img src="images/Product-Details-arrow.png" alt="" /></a>
 													</div>
 
-												</div>
+												</div></form>
 											</div>
 
 										</div>

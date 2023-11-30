@@ -91,11 +91,11 @@
 					$onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
 					extract($onenguoidung);
 					if ($role_id == 4 || $role_id == 5) {
-						$logadmin = '<a href="/app/controllers/index.php">Login Admin</a>';
+						$logadmin = '<a href="/app/controllers/index.php">Login Admin</a> /';
 					} else $logadmin = "";
 					echo '<div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="header_top_right floatright">
-						<p><a href="#">' . $_SESSION['user'] . '</a> / ' . $logadmin . ' /
+						<p><a href="#">' . $_SESSION['user'] . '</a> / ' . $logadmin . '
 						<a href="/app/views/demoxml.com/html/nimis/login-form-20/logout.php">Log out</a></p>
 						
 					</div>
@@ -241,14 +241,25 @@
 
 							</ul>
 						</li>
-						<li><a href="index.php?act=trangthaidonhang">order</a>
+						<?php
+								$ktdn=""; if(!isset($_SESSION['user'])) 
+    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class=""   onclick="return confirm(\' Vui lòng đăng nhập\')">order</a>';
+    else $ktdn= '<a href="index.php?act=trangthaidonhang">order</a>
+    '; ?>
+						
+						<li><?=$ktdn?>
 							
 						</li>
 					</ul>
 				</nav>
 			</div>
 			<div class="nav_right floatright">
-				<a href="index.php?act=viewcart"><img src="images/bag.png" alt="Bag" />cart: <?=sizeof($_SESSION['giohang'])?> items</a>
+			<?php
+								$ktdn=""; if(!isset($_SESSION['user'])) 
+    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="" onclick="return confirm(\' Vui lòng đăng nhập\')"  ><img src="images/bag.png" alt="Bag" />cart: '.sizeof($_SESSION['giohang']).' items</a>';
+    else $ktdn= '<a href="index.php?act=viewcart"><img src="images/bag.png" alt="Bag" />cart: '.sizeof($_SESSION['giohang']).' items</a>
+    '; ?>
+				<?=$ktdn?>
 				<div class="cart_menu">
 					<?php  $tong=0;
 						foreach ($_SESSION['giohang'] as $dh) {
