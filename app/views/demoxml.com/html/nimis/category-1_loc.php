@@ -236,8 +236,8 @@
                     <div class="row">
                     <?php
 								$ktdn=""; if(!isset($_SESSION['user'])) 
-    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  onclick="return confirm(\' Vui lòng đăng nhập\')" id="inputadd"></a>';
-    else $ktdn= '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART"  id="inputadd"></a>
+    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  onclick="return confirm(\' Vui lòng đăng nhập\')"  style="background-color: rgb(253,253,253,0.6); border: none;"></a>';
+    else $ktdn= '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART"   style="background-color: rgb(253,253,253,0.6); border: none;"></a>
     '; ?>
                         <?php foreach ($dssp as $sp) {
                             extract($sp);

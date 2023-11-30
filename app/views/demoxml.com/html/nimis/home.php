@@ -210,7 +210,7 @@
 										data-toggle="tab">top rated <span>x</span></a></li>
 								<li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
 										data-toggle="tab">trending <span>x</span></a></li>
-								<li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
+								<li  role="presentation"><a href="#settings" aria-controls="settings" role="tab"
 										data-toggle="tab"> best offer</a></li>
 							</ul>
 
@@ -218,27 +218,32 @@
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="home">
 									<div id="owl-example" class="owl-carousel">
-										
+									<?php
+								$ktdn=""; if(!isset($_SESSION['user'])) 
+    $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  style="background-color: rgb(253,253,253,0.6); border: none;" onclick="return confirm(\' Vui lòng đăng nhập\')"></a>';
+    else $ktdn= '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART" style="background-color: rgb(253,253,253,0.6); border: none;" ></a>
+    '; ?>
 										<?php
                     $i=0;
 foreach ($spnew as $sp) {
     extract($sp);
-    $img="C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/" .$hinh;
-    if($i==3||$i==6||$i==9){
-        $mr="";
-    }else{
-        $mr="mr";
-    }
+
     $linksp="index.php?act=sanphamct&id_san_pham=".$id_san_pham;
     echo '
 							
 									<div class="item">
 										<div class="item-img">
+										<form action="index.php?act=addtocart" method="post">
+							<input type="hidden" name="id_san_pham" value="' . $id_san_pham . '">
+							<input type="hidden" name="ten_san_pham" value="' . $ten_san_pham . '">
+							<input type="hidden" name="hinh" value="' . $hinh . '">
+							<input type="hidden" name="linksp" value="' . $linksp . '">	
+							<input type="hidden" name="giam_gia" value="' . $giam_gia . '">	
                                         <a href="'.$linksp.'"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
-													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-													<li><a class="tr_text" href="#">ADD TO CART</a></li>
+													
+													<li>'.$ktdn.'</li>
 													<li><a class="fa fa-heart tr_heart" href="#"></a></li>
 													<li><a class="fa fa-search tr_search"
 															href="index.php?act=product-detail&id_san_pham='.$id_san_pham.'"></a></li>
@@ -254,7 +259,7 @@ foreach ($spnew as $sp) {
 											</a>
 											<p>$'.$giam_gia.'<span><del>$'.$gia.'</del></span></p>
 										</div>
-									
+									</form>
 							</div>';
                             $i++;
 }
