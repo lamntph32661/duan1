@@ -3,6 +3,7 @@
 include "../models/connect.php";
 include "../models/pdo.php";
 include "../models/taikhoan.php";
+include "../models/nguoidung.php";
 include "../models/danhmuc.php";
 include "../models/sanpham.php";
 include "../models/banner.php";

@@ -1,4 +1,22 @@
 <?php
+function updatesoluong($vitri)
+{
+    for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+        if ($i = $vitri) {
+            $_SESSION['giohang'][$i][5] += 1;
+        }
+    }
+}
+function checktrungsp($id_san_pham)
+{
+    $vitri = -1;
+    for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
+        if ($_SESSION['giohang'][$i][0] == $id_san_pham) {
+            $vitri = $i;
+        }
+    }
+    return $vitri;
+}
 function insert_sanpham($ten_san_pham,$hinh,$gia,$giam_gia,$mo_ta,$so_luong,$id_danh_muc){
     $sql="insert into san_pham(`ten_san_pham`, `hinh`, `gia`, `giam_gia`, `mo_ta`, `so_luong`, `id_danh_muc`) 
     values('$ten_san_pham','$hinh','$gia','$giam_gia','$mo_ta','$so_luong','$id_danh_muc')";
