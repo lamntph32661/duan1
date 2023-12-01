@@ -82,8 +82,8 @@
           </div>
         </div>
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <a href="/app/controllers/login-form-20/logout.php" class="d-block">Logout</a>
-        <a href="index.php?act=thongtincanhan" class="d-block">Thông tin</a>
+        <a href="/app/controllers/login-form-20/logout.php" class="d-block">Logout</a>  
+        <a href="index.php?act=thongtincanhan" class="d-block"> / Thông tin</a>
         </div>';
     } else {
         echo ' <div class="user-panel mt-3 pb-3 mb-3 d-flex">

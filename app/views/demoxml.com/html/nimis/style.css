@@ -40,7 +40,9 @@ This Template Is Fully Coded By Shakhawat H. from codingcouples.com
 /* ============================================
 1. Base CSS
 ===============================================*/
-
+th, td{
+  padding: 10px;
+}
 .floatleft { float: left }
 .floatright { float: right }
 .alignleft {

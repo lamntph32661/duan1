@@ -74,7 +74,7 @@
 			extract($donhang);
 			$trang_thai1 = "";
 			if ($trang_thai == "Đã giao") $trang_thai1 = '  <a href="index.php?act=danhan&id=' . $id_don_hang . '" class="btnfunction">Đã nhận được hàng</a>';
-			if ($trang_thai == "Chờ xác nhận"||$trang_thai == "Đang chuẩn bị hàng") $trang_thai1 = '  <a href="index.php?act=huydonhang&id=' . $id_don_hang . '" class="btnfunction">Hủy đơn hàng</a>';
+			if ($trang_thai == "Chờ xác nhận") $trang_thai1 = '  <a href="index.php?act=huydonhang&id=' . $id_don_hang . '" class="btnfunction">Hủy đơn hàng</a>';
 			
 		
 							echo '	<tr>
