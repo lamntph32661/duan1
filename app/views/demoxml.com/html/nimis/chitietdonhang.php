@@ -37,6 +37,7 @@
         <th>Số lượng</th>
         <th>Giá</th>
         <th>Thành tiền</th>
+        <th>Chức năng</th>
     </tr>
     <tbody>
         <?php

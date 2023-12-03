@@ -41,7 +41,32 @@ This Template Is Fully Coded By Shakhawat H. from codingcouples.com
 1. Base CSS
 ===============================================*/
 th, td{
+  padding: 20px;
+
+}
+tr{
+  border-bottom: 1px solid #000;
+}
+th{
+  border: none;
+  background-color: #FF6766;
+  color: white;
+}
+table{
+  width: 1150px;
+}
+.btnfunction{
   padding: 10px;
+  border: 2px solid #FF6766;
+  background-color: #ffffff;
+  color: #000;
+}
+.btnfunction:hover{
+  padding: 10px;
+  background-color: #FF6766;
+  border: 2px solid #FF6766;
+  color: #ffffff;
+  text-decoration: none;
 }
 .floatleft { float: left }
 .floatright { float: right }

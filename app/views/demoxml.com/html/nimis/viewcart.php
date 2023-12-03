@@ -28,11 +28,11 @@
 <section class="main_cart_area">
 	<div class="container">
 
-<br>
+<br><div class="d_table">
 <?php
 // echo $_GET['thongbao'];
 // var_dump($_SESSION['giohang']);
-$kq = '<table style="border: 1; border-collapse: collapse;">
+$kq = '<table >
 <tr>
     <th>STT</th>
     <th>Tên sản phẩm</th>
@@ -62,7 +62,7 @@ $kq .= '<tr><td colspan="5"></td><td>' . $tong . '</td><td><a href="index.php?ac
 $kq .= '</tbody>
 </table>';
 echo $kq;
-?>
+?></div>
 <script>
     function tang(x) {
         // thay đổi số lượng trực tiếp với DOM HTML

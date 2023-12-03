@@ -29,6 +29,11 @@ function loadall_sanpham()
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
+function capnhat_sl_sanpham($id,$sl)
+{
+    $sql = "update san_pham set so_luong= so_luong -'" . $sl . "' WHERE id_san_pham=".$id;
+    pdo_execute($sql);
+}
 function loc_sanpham($kyw, $iddm)
 {
     $sql = "select * from san_pham where 1";

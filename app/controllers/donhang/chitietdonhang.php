@@ -33,6 +33,7 @@
             <tr>
               <th>Mã sản phẩm</th>
               <th>Tên sản phẩm</th>
+              <th>Hình</th>
               <th>Số lượng</th>
               <th>Giá</th>
               <th>Thành tiền</th>
@@ -45,6 +46,7 @@
                 echo '<tr>
                                 <td>' . $id_san_pham . '</td>
                                 <td>' . $ten_san_pham . '</td>
+                                <td><img src="/public/uploads/' . $hinh . '" alt="" height=80px></td>
                                 <td>' . $so_luong . '</td>
                                 <td>$' . $gia . '</td>
                                 <td>' . $thanh_tien . '</td>

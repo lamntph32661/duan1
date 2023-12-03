@@ -56,7 +56,7 @@ function loadall_donhang_admin_danhan()
 }
 function load_ctdh($id)
 {
-    $sql = "SELECT sp.id_san_pham, ctdh.so_luong, ctdh.id_don_hang, ctdh.gia, ctdh.thanh_tien, sp.ten_san_pham, sp.hinh, sp.giam_gia
+    $sql = "SELECT sp.id_san_pham,sp.hinh, ctdh.so_luong, ctdh.id_don_hang, ctdh.gia, ctdh.thanh_tien, sp.ten_san_pham, sp.hinh, sp.giam_gia
     FROM ctdh
     JOIN san_pham sp ON ctdh.id_san_pham = sp.id_san_pham WHERE id_don_hang =".$id;
     $dh = pdo_query($sql);

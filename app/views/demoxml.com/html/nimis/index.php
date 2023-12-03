@@ -4,13 +4,13 @@ ob_start();
 if (!isset($_SESSION['giohang'])) {
     $_SESSION['giohang'] = array();
 }
-include "C:/Users/PC TGDD/Desktop/test/app/models/connect.php";
-include "C:/Users/PC TGDD/Desktop/test/app/models/pdo.php";
-include "C:/Users/PC TGDD/Desktop/test/app/models/sanpham.php";
-include "C:/Users/PC TGDD/Desktop/test/app/models/danhmuc.php";
-include "/Users/PC TGDD/Desktop/test/app/models/banner.php";
-include "C:/Users/PC TGDD/Desktop/test/app/models/taikhoan.php";
-include "C:/Users/PC TGDD/Desktop/test/app/models/donhang.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/connect.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/pdo.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/sanpham.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/danhmuc.php";
+include "/Users/PC TGDD/Desktop/duan1/app/models/banner.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/taikhoan.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/donhang.php";
 $dsdm = loadall_danhmuc();
 $listbanner = loadall_banner();
 $spnew = loadall_sanpham_home();
@@ -139,6 +139,7 @@ if (isset($_GET['act'])) {
                 $err = $idctdh['id_ctdh'] + 1;
                 for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
                     $dh = loadidmax_donhang();
+                    capnhat_sl_sanpham($_SESSION['giohang'][$i][0],$_SESSION['giohang'][$i][5]);
                     insert_ctdh($id_ctdh, $dh['id_don_hang'], $_SESSION['giohang'][$i][0], $_SESSION['giohang'][$i][5], $_SESSION['giohang'][$i][4], ($_SESSION['giohang'][$i][4] * $_SESSION['giohang'][$i][5]));
                 }
                 unset($_SESSION['giohang']);

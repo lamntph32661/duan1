@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card  card-primary">
         <div class="card-header">
-          <h3 class="card-title">Danh sách đơn hàng</h3>
+          <h3 class="card-title">Lịch sử đơn hàng</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 200px;">
@@ -28,7 +28,8 @@
               </thead>
               <tbody>
                 <?php
-                foreach ($loadall_donhang as $dh) {
+                
+                foreach (array_reverse($loadall_donhang) as $dh) {
                   extract($dh);
                   if ($trang_thai == "chờ xác nhận") $s1 = "selected";
                   else $s1 = "";
