@@ -28,9 +28,20 @@ if(is_array($banner)){
               <span class="input-group-text">Upload</span>
             </div>
           </div>
-          <div class="form-group">
+          <label for="exampleInputPassword1">Danh mục</label>
+          <select name="link" id="" class="form-control w-100">
+            <?php
+            foreach ($listdanhmuc as $danhmuc) {
+              extract($danhmuc);
+              if ($banner['link']==$danhmuc['id_danh_muc']) $s = "selected";
+              else $s = "";
+              echo '<option value="' . $id_danh_muc . '" ' . $s . '>' . $ten_danh_muc . '</option>';
+          }
+            ?>
+          </select>
+          <!-- <div class="form-group">
           <label for="exampleInputPassword1">Link</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>"  required>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>"  required> -->
         </div>
         <div class="card-footer">
         <input type="hidden" name="id_banner" value="<?php if(isset($id_banner)&&($id_banner!="")) echo $id_banner?>">

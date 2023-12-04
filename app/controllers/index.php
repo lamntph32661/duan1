@@ -58,6 +58,7 @@ if (isset($_GET['act'])) {
                     insert_banner($ten_banner, $url_image, $pas);
                 }
             }
+            $listdanhmuc = loadall_danhmuc();
             include "banner/thembanner.php";
             break;
         case "danhsachbanner":
@@ -73,6 +74,7 @@ if (isset($_GET['act'])) {
             break;
         case "capnhatbanner":
             if (isset($_GET['id_banner']) && ($_GET['id_banner'] > 0)) {
+                $listdanhmuc = loadall_danhmuc();
                 $banner = loadone_banner($_GET['id_banner']);
             }
             include "banner/capnhatbanner.php";
