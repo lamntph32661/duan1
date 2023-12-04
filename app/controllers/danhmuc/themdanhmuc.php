@@ -8,7 +8,7 @@
     <div class="card-body">
         <div class="form-group">
           <label for="danhmuc">Tên danh mục</label>
-          <input type="text" class="form-control" id="danhmuc" placeholder="Nhập tên danh mục" name="tendm">
+          <input type="text" class="form-control" id="danhmuc" placeholder="Nhập tên danh mục" name="tendm"  required>
         </div>
         <div class="card-footer">
           <input type="submit" class="btn btn-primary" name="themmoi" value="Submit">

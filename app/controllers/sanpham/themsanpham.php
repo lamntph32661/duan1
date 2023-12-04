@@ -22,13 +22,13 @@
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Tên sản phẩm</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên sản phẩm" name="tensp">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên sản phẩm" name="tensp" required>
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Hình sản phẩm</label>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile">
+              <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile" required>
               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
             </div>
             <div class="input-group-append">
@@ -39,29 +39,29 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá sản phẩm" name="giasp">
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá sản phẩm" name="giasp" required>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Giảm giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giảm giá sản phẩm" name="giamgiasp">
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giảm giá sản phẩm" name="giamgiasp" required>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Mô tả</label>
-          <textarea class="form-control" id="exampleInputPassword1" cols="10" rows="7" placeholder="Nhập mô tả sản phẩm" name="motasp"></textarea>
+          <textarea class="form-control" id="exampleInputPassword1" cols="10" rows="7" placeholder="Nhập mô tả sản phẩm" name="motasp" required></textarea>
 
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Số lượng</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập số lượng" name="soluong">
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập số lượng" name="soluong" required>
         </div>
 
       </div>
       <!-- /.card-body -->
 
       <div class="card-footer">
-        <input class="btn btn-secondary" type="submit" value="Thêm" name="themmoi">
-        <input class="btn btn-secondary" type="reset" value="Nhập lại">
-        <a href="index.php?act=danhsachsanpham" class="btn btn-success">Danh sách</a>
+        <input class="btn btn-success" type="submit" value="Thêm" name="themmoi">
+        <input class="btn btn-danger" type="reset" value="Nhập lại">
+        <a href="index.php?act=danhsachsanpham" class="btn btn-info">Danh sách</a>
       </div>
     </form>
 

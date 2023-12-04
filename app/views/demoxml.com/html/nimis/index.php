@@ -22,29 +22,29 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && ($_GET['id'])) {
                 $load_ctdh = load_ctdh($_GET['id']);
             }
-            $ttdh=load_trangthai_donhang($_GET['id']);
+            $ttdh = load_trangthai_donhang($_GET['id']);
             include "chitietdonhang.php";
             break;
         case "trangthaidonhang":
-            if (isset($_SESSION['id_nguoi_dung']) ) 
-            $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
-        
+            if (isset($_SESSION['id_nguoi_dung']))
+                $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
+
             include "trangthaidonhang.php";
 
             break;
-            case "capnhatdonhang":
-                if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-                    $trangthai = $_POST['trangthai'];
-                    $hoten = $_POST['hoten'];
-                    $diachi = $_POST['diachi'];
-                    $sdt = $_POST['sdt'];
-                    $ghichu = $_POST['ghichu'];
-                    $id = $_POST['id'];
-                    update_trangthai_donhang($id,$hoten,$trangthai,$ghichu,$diachi,$sdt);
-                }
-                $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
-                include "trangthaidonhang.php";
-                break;
+        case "capnhatdonhang":
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                $trangthai = $_POST['trangthai'];
+                $hoten = $_POST['hoten'];
+                $diachi = $_POST['diachi'];
+                $sdt = $_POST['sdt'];
+                $ghichu = $_POST['ghichu'];
+                $id = $_POST['id'];
+                update_trangthai_donhang($id, $hoten, $trangthai, $ghichu, $diachi, $sdt);
+            }
+            $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
+            include "trangthaidonhang.php";
+            break;
         case "lichsumuahang":
             $loadall_donhang = loadall_donhang_danhan_dahuy($_SESSION['id_nguoi_dung']);
             include "lichsumuahang.php";
@@ -82,6 +82,31 @@ if (isset($_GET['act'])) {
         case "home":
             include "home.php";
             break;
+        case "thongtincanhan":
+            if (isset($_SESSION['user']) && isset($_SESSION['pass']))
+                $onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
+            include "thongtincanhan.php";
+            break;
+        case 'updatethongtin':
+            if (isset($_GET["id_nguoi_dung"]) && ($_GET["id_nguoi_dung"]))
+                $onenguoidung = loaduser($_GET["id_nguoi_dung"]);
+            include "capnhatnguoidung.php";
+            break;
+        case 'capnhatthongtin':
+            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+                $id_nguoi_dung = $_POST['id_nguoi_dung'];
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $ho_ten = $_POST['ho_ten'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $dia_chi = $_POST['dia_chi'];
+                $role_id = $_POST['role_id'];
+                update_nguoi_dung($id_nguoi_dung, $username, $password, $ho_ten, $email, $sdt, $dia_chi, $role_id);
+            }
+            $onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
+            include("thongtincanhan.php");
+            break;
         case "huydonhang":
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 delete_donhang($_GET['id']);
@@ -89,57 +114,57 @@ if (isset($_GET['act'])) {
             $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
             include "trangthaidonhang.php";
             break;
-            case "mualai":
-                if (isset($_POST['mualai']) && ($_POST['mualai'])) {
-                    $id_san_pham = $_POST['id_san_pham'];
-                    $ten_san_pham = $_POST['ten_san_pham'];
-                    $hinh = $_POST['hinh'];
-                    $linksp = $_POST['linksp'];
-                    $giam_gia = $_POST['giam_gia'];
-                    if (isset($_POST['sl']) && $_POST['sl'] > 0) {
-                        $sl = $_POST['sl'];
-                    } else {
-                        $sl = 1;
-                    }
-    
-                    $fg = 0;
-    
-                    $i = 0;
-                    foreach ($_SESSION['giohang'] as $item) {
-                        if ($item[1] == $ten_san_pham) {
-                            $slnew = $sl + $item[5];
-                            $_SESSION['giohang'][$i][5] = $slnew;
-                            $fg = 1;
-                            break;
-                        }
-                        $i++;
-                    }
-                    if ($fg == 0) {
-                        $item = array($id_san_pham, $ten_san_pham, $hinh, $linksp, $giam_gia, $sl);
-                        array_unshift($_SESSION['giohang'], $item);
-                    }
+        case "mualai":
+            if (isset($_POST['mualai']) && ($_POST['mualai'])) {
+                $id_san_pham = $_POST['id_san_pham'];
+                $ten_san_pham = $_POST['ten_san_pham'];
+                $hinh = $_POST['hinh'];
+                $linksp = $_POST['linksp'];
+                $giam_gia = $_POST['giam_gia'];
+                if (isset($_POST['sl']) && $_POST['sl'] > 0) {
+                    $sl = $_POST['sl'];
+                } else {
+                    $sl = 1;
                 }
-                header("location:index.php?act=viewcart&thongbao=" . $thongbao);
-                break;
+
+                $fg = 0;
+
+                $i = 0;
+                foreach ($_SESSION['giohang'] as $item) {
+                    if ($item[1] == $ten_san_pham) {
+                        $slnew = $sl + $item[5];
+                        $_SESSION['giohang'][$i][5] = $slnew;
+                        $fg = 1;
+                        break;
+                    }
+                    $i++;
+                }
+                if ($fg == 0) {
+                    $item = array($id_san_pham, $ten_san_pham, $hinh, $linksp, $giam_gia, $sl);
+                    array_unshift($_SESSION['giohang'], $item);
+                }
+            }
+            header("location:index.php?act=viewcart&thongbao=" . $thongbao);
+            break;
         case "checkout":
             $err = "";
             if (isset($_POST['dathang']) && ($_POST['dathang'])) {
                 $id_nguoi_dung = $_POST['id_nguoi_dung'];
                 $ten_nguoi_nhan = $_POST['hoten'];
-                $_SESSION['id_nguoi_dung']=$_POST['id_nguoi_dung'];
+                $_SESSION['id_nguoi_dung'] = $_POST['id_nguoi_dung'];
                 $ngay_dat_hang = date('d/m/Y');
                 $trang_thai = "Chờ xác nhận";
                 $diachi = $_POST['diachi'];
                 $sdt_nhan_hang = $_POST['sdt'];
                 $tong_tien = $_POST['tongtien'];
                 $ghi_chu = $_POST['ghichu'];
-                insert_donhang($id_nguoi_dung,$ten_nguoi_nhan, $ngay_dat_hang, $sdt_nhan_hang, $diachi, $tong_tien, $trang_thai, $ghi_chu);
+                insert_donhang($id_nguoi_dung, $ten_nguoi_nhan, $ngay_dat_hang, $sdt_nhan_hang, $diachi, $tong_tien, $trang_thai, $ghi_chu);
                 $idctdh = loadidmax_ctdh();
                 $id_ctdh = $idctdh['id_ctdh'] + 1;
                 $err = $idctdh['id_ctdh'] + 1;
                 for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
                     $dh = loadidmax_donhang();
-                    capnhat_sl_sanpham($_SESSION['giohang'][$i][0],$_SESSION['giohang'][$i][5]);
+                    capnhat_sl_sanpham($_SESSION['giohang'][$i][0], $_SESSION['giohang'][$i][5]);
                     insert_ctdh($id_ctdh, $dh['id_don_hang'], $_SESSION['giohang'][$i][0], $_SESSION['giohang'][$i][5], $_SESSION['giohang'][$i][4], ($_SESSION['giohang'][$i][4] * $_SESSION['giohang'][$i][5]));
                 }
                 unset($_SESSION['giohang']);

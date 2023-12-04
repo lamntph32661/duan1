@@ -16,14 +16,14 @@
         <div class="card-body">
         <div class="form-group">
           <label for="exampleInputEmail1">Tên Banner</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên Banner" name="tenbanner">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên Banner" name="tenbanner"  required>
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Hình Banner</label>
 
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile">
+              <input type="file" name="hinh" class="custom-file-input" id="exampleInputFile"  required>
               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
             </div>
             <div class="input-group-append">
@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
           <label for="exampleInputPassword1">Link</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" >
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link"  required>
         </div>
         <div class="card-footer">
 

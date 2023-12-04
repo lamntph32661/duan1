@@ -38,7 +38,7 @@
                       <td>'.$link.'</td>
                       <td>
                       <a href="index.php?act=xoabanner&id_banner='.$id_banner.'">
-                      <input  class="btn btn-success" type="button" value="Xóa"  onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
+                      <input  class="btn btn-danger" type="button" value="Xóa"  onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
                 <a href="index.php?act=capnhatbanner&id_banner='.$id_banner.'"><input  class="btn btn-success" type="button" value="cập nhật"></a>
             </td>
                     </tr>

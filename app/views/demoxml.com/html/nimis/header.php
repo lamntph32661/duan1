@@ -97,7 +97,7 @@
 					} else $logadmin = "";
 					echo '<div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="header_top_right floatright">
-						<p><a href="#">' . $_SESSION['user'] . '</a> / ' . $logadmin . '
+						<p><a href="index.php?act=thongtincanhan">' . $_SESSION['user'] . '</a> / ' . $logadmin . '
 						<a href="/app/views/demoxml.com/html/nimis/login-form-20/logout.php">Log out</a></p>
 						
 					</div>

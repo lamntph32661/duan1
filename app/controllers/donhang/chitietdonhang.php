@@ -121,8 +121,8 @@
             <br><input type="hidden" name="id" value="<?= $id_don_hang ?>">
             <?php
 if($trang_thai=="Chờ xác nhận"||$trang_thai=="Đang chuẩn bị hàng") echo $capnhat1; else 
-if($trang_thai=="Đang giao"||$trang_thai=="Đã nhận"||$trang_thai=="Đã hủy") echo $capnhat2; else echo $capnhat4;
-
+if($trang_thai=="Đang giao") echo $capnhat2; else echo $capnhat4;
+// ||$trang_thai=="Đã hủy" ||$trang_thai=="Đã nhận"
             ?>
 
             

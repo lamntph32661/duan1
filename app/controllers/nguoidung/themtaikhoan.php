@@ -9,27 +9,27 @@
 
             <div class="mb-3">
                 <label class="form-label">User name: </label>
-                <input type="text" class="form-control w-50 p-3" name="username">
+                <input type="text" class="form-control w-50 p-3" name="username" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Password: </label>
-                <input type="text" class="form-control w-50 p-3" name="password">
+                <input type="text" class="form-control w-50 p-3" name="password" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Họ và tên: </label>
-                <input type="text" class="form-control w-50 p-3" name="hoten">
+                <input type="text" class="form-control w-50 p-3" name="hoten" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email:</label>
-                <input type="email" class="form-control w-50 p-3" name="email">
+                <input type="email" class="form-control w-50 p-3" name="email" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Số điện thoại:</label>
-                <input type="text" class="form-control w-50 p-3" name="sdt">
+                <input type="text" class="form-control w-50 p-3" name="sdt" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Địa chỉ:</label>
-                <input type="password" class="form-control w-50 p-3" name="diachi">
+                <input type="password" class="form-control w-50 p-3" name="diachi" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Phân quyền:</label>

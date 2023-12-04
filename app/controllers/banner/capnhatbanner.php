@@ -14,14 +14,14 @@ if(is_array($banner)){
       <div class="card-body">
         <div class="form-group">
           <label for="exampleInputEmail1">Tên Banner</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên Banner" name="tenbanner"  value="<?=$ten_banner?>">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên Banner" name="tenbanner" required value="<?=$ten_banner?>">
         </div>
         <div class="form-group">
           <label for="exampleInputFile">Hình Banner</label>
           <img src="/public/uploads/<?=$hinh?>" alt="" height="80">
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" name="hinh_new" class="custom-file-input" id="exampleInputFile">
+              <input type="file" name="hinh_new" class="custom-file-input" id="exampleInputFile" >
               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
             </div>
             <div class="input-group-append">
@@ -30,7 +30,7 @@ if(is_array($banner)){
           </div>
           <div class="form-group">
           <label for="exampleInputPassword1">Link</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>">
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Thêm link" name="link" value="<?=$link?>"  required>
         </div>
         <div class="card-footer">
         <input type="hidden" name="id_banner" value="<?php if(isset($id_banner)&&($id_banner!="")) echo $id_banner?>">

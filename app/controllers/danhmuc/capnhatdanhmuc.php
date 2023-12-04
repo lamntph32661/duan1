@@ -14,7 +14,7 @@ if(is_array($dm)){
       <div class="card-body">
         <div class="form-group">
           <label for="exampleInputEmail1">Tên danh mục</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên danh mục" name="tendm"  value="<?=$ten_danh_muc?>">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên danh mục" name="tendm"  value="<?=$ten_danh_muc?>"  required>
         </div>
         <div class="card-footer">
         <input type="hidden" name="id" value="<?php if(isset($id_danh_muc)&&($id_danh_muc!="")) echo $id_danh_muc?>">

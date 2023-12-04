@@ -33,9 +33,13 @@ include "C:/Users/PC TGDD/Desktop/duan1/app/models/nguoidung.php";
                         <h3 class="mb-4 text-center">Sign Up</h3>
 
                         <?php
+                        
                         $login_err = "";
+                        $pattern = '/^(0|\+84)([0-9]{9,10})$/';
+                        //preg_match kiểm tra đúng biểu thức chính quy hay không
 
                         if (isset($_POST['username']) && isset($_POST['password'])) {
+                            if(preg_match($pattern,$_POST['sdt'])!=true) $login_err="bạn chưa nhập đúng định dạng số điện thoại"; else
                              if (isset($_POST['repassword'])&&$_POST['password'] != $_POST['repassword']) $login_err = "Password và repassword chưa khớp";
                              else {
                                 $username = $_POST['username'];
