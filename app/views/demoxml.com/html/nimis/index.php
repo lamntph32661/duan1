@@ -11,6 +11,8 @@ include "C:/Users/PC TGDD/Desktop/duan1/app/models/danhmuc.php";
 include "/Users/PC TGDD/Desktop/duan1/app/models/banner.php";
 include "C:/Users/PC TGDD/Desktop/duan1/app/models/taikhoan.php";
 include "C:/Users/PC TGDD/Desktop/duan1/app/models/donhang.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/binhluan.php";
+include "C:/Users/PC TGDD/Desktop/duan1/app/models/nguoidung.php";
 $dsdm = loadall_danhmuc();
 $listbanner = loadall_banner();
 $spnew = loadall_sanpham_home();
@@ -28,9 +30,7 @@ if (isset($_GET['act'])) {
         case "trangthaidonhang":
             if (isset($_SESSION['id_nguoi_dung']))
                 $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
-
             include "trangthaidonhang.php";
-
             break;
         case "capnhatdonhang":
             if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
@@ -50,6 +50,22 @@ if (isset($_GET['act'])) {
             include "lichsumuahang.php";
 
             break;
+            case 'updatenguoidung':
+                if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
+                    $id_nguoi_dung = $_POST['id'];
+                    $username = $_POST["username"];
+                    $password = $_POST["password"];
+                    $ho_ten = $_POST["hoten"];
+                    $email = $_POST["email"];
+                    $sdt = $_POST["sdt"];
+                    $dia_chi = $_POST["diachi"];
+                    
+                    update_nguoi_dung($id_nguoi_dung, $username, $password, $ho_ten, $email, $sdt, $dia_chi, 0);
+                }
+                if (isset($_SESSION['user']) && isset($_SESSION['pass']))
+                $onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
+            include "thongtincanhan.php";
+                break;
         case "danhsachsanpham":
             if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
                 $kyw = $_POST['kyw'];
@@ -64,21 +80,21 @@ if (isset($_GET['act'])) {
             $dssp = loc_sanpham($kyw, $id_danh_muc);
             include "category-1_loc.php";
             break;
-        case 'sanpham':
-            if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
-                $kyw = $_POST['kyw'];
-            } else {
-                $kyw = "";
-            }
-            if (isset($_GET['id_danh_muc']) && ($_GET['id_danh_muc'] > 0)) {
-                $id_danh_muc = $_GET['id_danh_muc'];
-            } else {
-                $id_danh_muc = 0;
-            }
-            $dssp = loc_sanpham($kyw, $id_danh_muc);
-            //  $tendm = load_ten_dm($id_danh_muc);
-            include "category-1_loc.php";
-            break;
+        // case 'sanpham':
+        //     if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
+        //         $kyw = $_POST['kyw'];
+        //     } else {
+        //         $kyw = "";
+        //     }
+        //     if (isset($_GET['id_danh_muc']) && ($_GET['id_danh_muc'] > 0)) {
+        //         $id_danh_muc = $_GET['id_danh_muc'];
+        //     } else {
+        //         $id_danh_muc = 0;
+        //     }
+        //     $dssp = loc_sanpham($kyw, $id_danh_muc);
+        //     //  $tendm = load_ten_dm($id_danh_muc);
+        //     include "category-1_loc.php";
+        //     break;
         case "home":
             include "home.php";
             break;
@@ -152,7 +168,7 @@ if (isset($_GET['act'])) {
                 $id_nguoi_dung = $_POST['id_nguoi_dung'];
                 $ten_nguoi_nhan = $_POST['hoten'];
                 $_SESSION['id_nguoi_dung'] = $_POST['id_nguoi_dung'];
-                $ngay_dat_hang = date('d/m/Y');
+                $ngay_dat_hang = date('d-m-Y');
                 $trang_thai = "Chờ xác nhận";
                 $diachi = $_POST['diachi'];
                 $sdt_nhan_hang = $_POST['sdt'];
@@ -230,25 +246,49 @@ if (isset($_GET['act'])) {
                 $trangthai = "Đã nhận";
                 nhanhang($id, $trangthai);
             }
-            include "cart.php";
+            $loadall_donhang = loadall_donhang_chuanhan($_SESSION['id_nguoi_dung']);
+            include "trangthaidonhang.php";
             break;
-        case "cart":
-            include "cart.php";
+            case "binhluan":
+                $onenguoidung = checkuser($_SESSION['user'], $_SESSION['pass']);
+                if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
+$loai_danh_gia=$_POST['loai_danh_gia'];
+$noi_dung=$_POST['noidung'];
+$id_nguoi_dung=$_POST['id_nguoi_dung'];
+$id_san_pham=$_POST['id_san_pham'];
+$ngaybinhluan=date('d/m/Y');
+insert_binhluan($id_san_pham, $loai_danh_gia, $noi_dung, $id_nguoi_dung, $ngaybinhluan);
+
+                }
+                
+                    $onesp = loadone_sanpham($id_san_pham);
+                    extract($onesp);
+                    $listbinhluan=loadall_binhluan($id_san_pham);
+                    $sp_cung_loai = load_sanpham_cungloai($id_san_pham, $id_danh_muc);
+                    include "product-detail.php";
+                
+    
+                        
+                
+                break;
+        case "danhgia":
+            
+            include "danhgia.php";
             break;
-        case "category-1_loc":
-            if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
-                $kyw = $_POST['kyw'];
-            } else {
-                $kyw = "";
-            }
-            if (isset($_GET['id_danh_muc']) && ($_GET['id_danh_muc'] > 0)) {
-                $id_danh_muc = $_GET['id_danh_muc'];
-            } else {
-                $id_danh_muc = 0;
-            }
-            $dssp = loc_sanpham($kyw, $id_danh_muc);
-            include "category-1_loc.php";
-            break;
+        // case "category-1_loc":
+        //     if (isset($_POST['kyw']) && ($_POST['kyw'] != "")) {
+        //         $kyw = $_POST['kyw'];
+        //     } else {
+        //         $kyw = "";
+        //     }
+        //     if (isset($_GET['id_danh_muc']) && ($_GET['id_danh_muc'] > 0)) {
+        //         $id_danh_muc = $_GET['id_danh_muc'];
+        //     } else {
+        //         $id_danh_muc = 0;
+        //     }
+        //     $dssp = loc_sanpham($kyw, $id_danh_muc);
+        //     include "category-1_loc.php";
+        //     break;
             // case "category-2":
             //     include "category-2.php";
             //     break;
@@ -262,6 +302,8 @@ if (isset($_GET['act'])) {
                 }
                 $onesp = loadone_sanpham($id);
                 extract($onesp);
+                $listbinhluan=loadall_binhluan($id);
+                $listnguoidung=loadall_nguoi_dung();
                 $sp_cung_loai = load_sanpham_cungloai($id, $id_danh_muc);
                 include "product-detail.php";
             } else {

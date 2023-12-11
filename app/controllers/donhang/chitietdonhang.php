@@ -77,7 +77,7 @@
           </div><div class="form-group">
             <label for="">Trạng thái đơn hàng</label>
             '.$th.'   
-            </div><input type="submit" value="Cập nhật" name="capnhat" class="btn btn-success">';
+            </div><input type="submit" value="Cập nhật" name="capnhat" class="btn btn-success" onclick="return confirm(\' Xác nhận cập nhật: \')">';
             $capnhat2='
             <input type="hidden" class="form-control" id="exampleInputEmail1" value="' .$ten_nguoi_nhan .'" name="hoten">
             <input type="hidden" class="form-control" id="exampleInputEmail1" value="' .$sdt_nhan_hang .'" name="sdt">
@@ -101,7 +101,7 @@
           <div class="form-group">
           <label for="">Trạng thái đơn hàng</label>
           '.$th.'   
-          </div><input type="submit" value="Cập nhật" name="capnhat" class="btn btn-success">';
+          </div><input type="submit" value="Cập nhật" name="capnhat" class="btn btn-success" onclick="return confirm(\' Xác nhận cập nhật: \')">';
             $capnhat4='
             <div class="form-group">
             <label for="exampleInputEmail1">Tên người nhận: ' .$ten_nguoi_nhan .'</label>

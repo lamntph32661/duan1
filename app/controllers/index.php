@@ -1,5 +1,9 @@
 <?php
 session_start();
+ob_start();
+if (!isset($_SESSION['giohang'])) {
+    $_SESSION['giohang'] = array();
+}
 include "../models/connect.php";
 include "../models/pdo.php";
 include "../models/taikhoan.php";
@@ -8,6 +12,7 @@ include "../models/danhmuc.php";
 include "../models/sanpham.php";
 include "../models/banner.php";
 include "../models/donhang.php";
+include "../models/binhluan.php";
 include "header.php";
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -120,6 +125,7 @@ if (isset($_GET['act'])) {
             include("nguoidung/thongtincanhan.php");
             break;
         case 'danhsachnguoidung':
+            $loadall_role=loadall_roles_user();
             $listnguoidung = loadall_nguoi_dung();
             include("nguoidung/danhsachnguoidung.php");
             break;
@@ -187,22 +193,27 @@ if (isset($_GET['act'])) {
 
             break;
         case "themsanpham":
+            $errthemsp = "";
             if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
-                $id_danh_muc = $_POST['iddm'];
-                $ten_san_pham = $_POST['tensp'];
-                $gia = $_POST['giasp'];
-                $giam_gia = $_POST['giamgiasp'];
-                $so_luong = $_POST['soluong'];
-                $mo_ta = $_POST['motasp'];
-                $hinh = $_FILES['hinh']['name'];
-                $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/uploads/";
-                $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    // echo "The file ". htmlspecialchars( basename( $_FILES["hinh"]["name"])). " has been uploaded.";
+                if ($_POST['giasp'] < $_POST['giamgiasp']) {
+                    $errthemsp = "Giá đã không được lớn hơn giá gốc";
                 } else {
-                    // echo "Sorry, there was an error uploading your file.";
+                    $id_danh_muc = $_POST['iddm'];
+                    $ten_san_pham = $_POST['tensp'];
+                    $gia = $_POST['giasp'];
+                    $giam_gia = $_POST['giamgiasp'];
+                    $so_luong = $_POST['soluong'];
+                    $mo_ta = $_POST['motasp'];
+                    $hinh = $_FILES['hinh']['name'];
+                    $target_dir = "C:/Users/PC TGDD/Desktop/duan1/public/uploads/";
+                    $target_file = $target_dir . basename($hinh = $_FILES['hinh']['name']);
+                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                        // echo "The file ". htmlspecialchars( basename( $_FILES["hinh"]["name"])). " has been uploaded.";
+                    } else {
+                        // echo "Sorry, there was an error uploading your file.";
+                    }
+                    insert_sanpham($ten_san_pham, $hinh, $gia, $giam_gia, $mo_ta, $so_luong, $id_danh_muc);
                 }
-                insert_sanpham($ten_san_pham, $hinh, $gia, $giam_gia, $mo_ta, $so_luong, $id_danh_muc);
             }
             $listdanhmuc = loadall_danhmuc();
             include "sanpham/themsanpham.php";
@@ -223,26 +234,24 @@ if (isset($_GET['act'])) {
             $listsanpham = loc_sanpham($kyw, $iddm);
             include "sanpham/danhsachsanpham.php";
             break;
-        case 'xoasp':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_sanpham($_GET['id']);
-            }
-
-            $sql = "select * from sanpham order by name";
-            $listsanpham = pdo_query($sql);
-            include "sanpham/list.php";
-            break;
+        
         case "xoasp":
             if (isset($_GET['id_san_pham']) && ($_GET['id_san_pham'] > 0)) {
                 delete_sanpham($_GET['id_san_pham']);
             }
 
-            $sql = "select * from san_pham order by ten_san_pham";
-            $listsanpham = pdo_query($sql);
-
+            if (isset($_POST['listok']) && ($_POST['listok'])) {
+                $kyw = $_POST['kyw'];
+                $iddm = $_POST['iddm'];
+            } else {
+                $kyw = "";
+                $iddm = 0;
+            }
+            $listdanhmuc = loadall_danhmuc();
+            $listsanpham = loc_sanpham($kyw, $iddm);
             include "sanpham/danhsachsanpham.php";
             break;
-        case "capnhatsp":
+        case "capnhatsp":$errthemsp = "";
             if (isset($_GET['id_san_pham']) && ($_GET['id_san_pham'] > 0)) {
                 $listdanhmuc = loadall_danhmuc();
                 $sanpham = loadone_sanpham($_GET['id_san_pham']);
@@ -250,8 +259,12 @@ if (isset($_GET['act'])) {
             include "sanpham/capnhatsanpham.php";
             break;
         case 'capnhatsanpham':
+            
             if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
-
+                if ($_POST['giasp'] < $_POST['giamgiasp']) {
+                    $errthemsp = "Giá đã giảm phải nhỏ hơn giá gốc";
+                    
+                } else {
                 $id_danh_muc = $_POST['iddm'];
                 $id_san_pham = $_POST['id'];
                 $ten_san_pham = $_POST['tensp'];
@@ -265,7 +278,7 @@ if (isset($_GET['act'])) {
                 move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file);
                 update_sanpham($ten_san_pham, $hinh, $gia, $giam_gia, $mo_ta, $so_luong, $id_danh_muc, $id_san_pham);
                 $thongbao = "cập nhật thành công";
-            }
+            }}
 
             $listdanhmuc = loadall_danhmuc();
             $listsanpham = loadall_sanpham();
@@ -273,6 +286,7 @@ if (isset($_GET['act'])) {
 
             break;
         case "danhsachtaikhoan":
+            
             include "taikhoan/danhsachtaikhoan.php";
             break;
             // case "updatetrangthai":
@@ -294,13 +308,13 @@ if (isset($_GET['act'])) {
         case "capnhatdonhang":
             if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
                 $trangthai = $_POST['trangthai'];
-                $hoten=$_POST['hoten'];
-                $ghichu=$_POST['ghichu'];
+                $hoten = $_POST['hoten'];
+                $ghichu = $_POST['ghichu'];
                 $diachi = $_POST['diachi'];
                 $sdt = $_POST['sdt'];
                 $id = $_POST['id'];
 
-                update_trangthai_donhang($id,$hoten, $trangthai,$ghichu,$diachi,$sdt);
+                update_trangthai_donhang($id, $hoten, $trangthai, $ghichu, $diachi, $sdt);
                 $loadall_donhang = loadall_donhang_admin_chuanhan();
             }
 
@@ -313,10 +327,10 @@ if (isset($_GET['act'])) {
             $loadall_donhang = loadall_donhang_admin_chuanhan();
             include "donhang/danhsachdonhang.php";
             break;
-            case "lichsumuahang":
-                $loadall_donhang=loadall_donhang_admin_danhan();
-                include "donhang/lichsumuahang.php";
-                break;
+        case "lichsumuahang":
+            $loadall_donhang = loadall_donhang_admin_danhan();
+            include "donhang/lichsumuahang.php";
+            break;
         case "thongke":
             $listthongke = loadall_thongke();
             $sldm = soluong_danhmuc();
@@ -333,10 +347,30 @@ if (isset($_GET['act'])) {
         case "bieudo":
             include "thongke/bieudo.php";
             break;
-        case "binhluan":
+        case "binhluansp":
+            if(isset($_GET['id_san_pham'])&&($_GET['id_san_pham'])){
+                $id=$_GET['id_san_pham'];
+                $listbinhluan=loadall_binhluan($id);
+            }
+            
             include "binhluan/binhluan.php";
             break;
-
+            case "xoabl":
+                if(isset($_GET['id_binh_luan'])&&($_GET['id_binh_luan'])){
+                    $id=$_GET['id_binh_luan'];
+                    xoa_binhluan($id);
+                }
+                if (isset($_POST['listok']) && ($_POST['listok'])) {
+                    $kyw = $_POST['kyw'];
+                    $iddm = $_POST['iddm'];
+                } else {
+                    $kyw = "";
+                    $iddm = 0;
+                }
+                $listdanhmuc = loadall_danhmuc();
+                $listsanpham = loc_sanpham($kyw, $iddm);
+                include "sanpham/danhsachsanpham.php";
+                break;
         case "thongtinadmin":
             include "thongtinadmin/info.php";
             break;

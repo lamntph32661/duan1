@@ -151,14 +151,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="index.php?act=binhluan" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Bình luận
-              </p>
-            </a>
-          </li>
+         
           <li class="nav-item">
             <a href="index.php?act=danhsachdonhang" class="nav-link">
               <i class="nav-icon fas fa-th"></i>

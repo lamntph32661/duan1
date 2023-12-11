@@ -19,31 +19,43 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0" style="height: 500px;">
-          <form action="index.php?act=binhluan" method="post">
+          
             <table class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
-                  <td>Họ tên</td>
-                  <td>email</td>
-                  <td>Ảnh</td>
-                  <td>Nội dung bình luận</td>
-                  <td>Ngày đăng</td>
+                  <td>ID</td>
+                  <td>Sản phẩm</td>
+                  <td>loại đánh giá</td>
+                  <td>Nội dung</td>
+                  <td>Ngày bình luận</td>
                   <td>Chức năng</td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>quang</td>
-                  <td>email@gmail.com</td>
-                  <td><img src="https://picsum.photos/100" alt=""></td>
-                  <td>Sản phẩm đẹp</td>
-                  <td>5-11-2023</td>
-                  <td><button class="btn btn-danger">Xóa</button></td>
-                </tr>
+                <?php
+                  foreach ($listbinhluan as $binhluan) {
+                    extract($binhluan);
+                    $a = "";
+												if ($binhluan['loai_danh_gia'] == 1) $a = "Rất tệ";
+												if ($binhluan['loai_danh_gia'] == 2) $a = "Tệ";
+												if ($binhluan['loai_danh_gia'] == 3) $a = "Không hài lòng";
+												if ($binhluan['loai_danh_gia'] == 4) $a = "Hài lòng";
+												if ($binhluan['loai_danh_gia'] == 5) $a = "Rất hài lòng";
+                    echo '<tr>
+                  <td>'.$id_binh_luan.'</td>
+                  <td>'.$id_san_pham.'</td>
+                  <td>'.$a.'</td>
+                  <td><span style="height: 300px;width: 90px;">'.$noi_dung.'</span></td>
+                  <td>'.$ngay_binh_luan.'</td>
+                  <td><a href="index.php?act=xoabl&id_binh_luan='.$id_binh_luan.'"><button class="btn btn-danger">Xóa</button></a></td>
+                </tr>';
+                  }
+                ?>
+                
               </tbody>
             </table>
 
-          </form>
+          
         </div>
         <!-- /.card-body -->
       </div>

@@ -1,12 +1,9 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <div class="card card-primary w-100">
     <div class="card-header">
-      <h3 class="card-title">Thêm sản phẩm</h3>
+      <h3 class="card-title">Thêm tài khoản</h3>
     </div>
-
         <form class="ml-5" action="index.php?act=themtaikhoan" method="POST">
-
-
             <div class="mb-3">
                 <label class="form-label">User name: </label>
                 <input type="text" class="form-control w-50 p-3" name="username" required>
@@ -29,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Địa chỉ:</label>
-                <input type="password" class="form-control w-50 p-3" name="diachi" required>
+                <input type="text" class="form-control w-50 p-3" name="diachi" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Phân quyền:</label>

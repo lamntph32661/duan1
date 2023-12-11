@@ -149,20 +149,21 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-12">
 					<div class="header_left floatleft">
-						<a class="fa fa-search" href="#"></a>
-						<input type="text" placeholder="search" />
+						<!-- <a class="fa fa-search" href="#"></a>
+						<input type="text" placeholder="search" /> -->
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-5 col-xs-12">
 					<div class="header_center">
 						<a href="index.php"><img src="images/logo.png" alt="Site Logo" /></a>
+						<br><br><br>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-4 col-xs-12">
 					<div class="header_right floatright">
-						<ul class="checkout">
+						<!-- <ul class="checkout">
 							<li class="mobi_right_li"><a href="#"><i class="fa fa-shopping-cart"></i>checklist</a></li>
-						</ul>
+						</ul> -->
 
 					</div>
 				</div>
@@ -297,10 +298,20 @@
 					</div>
 					<div class="cart_view_bottom">
 						<div class="c_totals_left floatleft">
-							<a href="index.php?act=viewcart">View Cart</a>
+						<?php
+								$check2="";
+									if(!isset($_SESSION['giohang']))$check2='<a href="index.php?act=danhsachsanpham" onclick="return confirm (\' Chưa có sản phẩm trong giỏ hàng, thêm sản phẩm\')">View Cart</a>';
+									else $check2="<a href='index.php?act=viewcart'>View Cart</a>";
+								?>
+							<?=$check2?>
 						</div>
 						<div class="c_totals_right floatleft">
-							<a href="index.php?act=checkout">Check Out</a>
+						<?php
+								$check="";
+									if(!isset($_SESSION['giohang']))$check='<a href="index.php?act=danhsachsanpham" onclick="alert (\' Chưa có sản phẩm trong giỏ hàng, thêm sản phẩm\')">Check Out</a>';
+									else $check="<a href='index.php?act=checkout'>Check Out</a>";
+								?>
+							<?=$check?>
 						</div>
 					</div>
 				</div>

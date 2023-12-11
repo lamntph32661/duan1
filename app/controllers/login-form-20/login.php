@@ -37,6 +37,7 @@ include "C:/Users/PC TGDD/Desktop/duan1/app/models/taikhoan.php";
 			  if(isset($_POST['login_username'])&&isset($_POST['login_password'])){
 				$check_user = checkuser($_POST['login_username'], $_POST['login_password']);
 				if ($check_user) {
+					$_SESSION['id_nguoi_dung']=$check_user['id_nguoi_dung'];
 					$_SESSION['user']=$_POST['login_username'];
 					$_SESSION['pass']=$_POST['login_password'];
 					header("location:/app/controllers/index.php");

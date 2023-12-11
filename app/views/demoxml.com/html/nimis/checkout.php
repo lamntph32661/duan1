@@ -91,20 +91,21 @@
 									<p>Order Total</p>
 									<span>$<?= $tong ?></span>
 								</div><input type="hidden" name="tongtien" value="<?= $tong ?>">
-								<div class="c_payment">
+								<!-- <div class="c_payment">
 									<p>Select Payment Method</p>
 									<select class="selectpicker sel_state">
 										<option>Direct Bank Transfer</option>
 										<option>Wire Transfer</option>
 										<option>VISA</option>
 									</select>
-								</div>
+								</div> -->
 								<div class="checkbox">
 									<label>
 										<input type="checkbox"> I have Read & Accept <span>Terms & Conditions</span>
 									</label>
 								</div>
-								<input type="submit" value="Place order now" name="dathang" />
+								
+								<input type="submit" value="Place order now" name="dathang"  />
 							</div>
 						</div>
 

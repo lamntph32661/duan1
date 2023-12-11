@@ -28,7 +28,7 @@
 <div class="filter_area">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-8 col-xs-12">
+            <!-- <div class="col-md-6 col-sm-8 col-xs-12">
                 <div class="filter_box_left">
                     <p>FILTERING:</p>
                     <div class="filter_cont">
@@ -42,11 +42,11 @@
                         <p><span>|</span> showing 1-12 of 30 results</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-4 col-xs-12" style="text-align: right;">
+            </div> -->
+            <div class="col-md-6 col-sm-4 col-xs-12" style="text-align: left;">
                 
-                    <form action="index.php?act=sanpham" method="post" class="footer_top_left">
-                        <input type="text" name="kyw" placeholder="" style="background-color: aliceblue;" />
+                    <form action="index.php?act=danhsachsanpham" method="post" class="footer_top_left">
+                        <input type="text" name="kyw" placeholder="search" style="background-color: aliceblue; color: black;    width: 32%;" />
                         <input type="submit" name="timkiem" value="Search" />
                     </form>
                 
@@ -77,7 +77,7 @@
                                         <li><a href="index.php?act=danhsachsanpham">Tất cả</a></li>
                                         <?php foreach ($dsdm as $dm) {
                                             extract($dm);
-                                            $linkdm = "index.php?act=sanpham&id_danh_muc=" . $id_danh_muc;
+                                            $linkdm = "index.php?act=danhsachsanpham&id_danh_muc=" . $id_danh_muc;
                                             echo '<li><a href="' . $linkdm . '">' . $ten_danh_muc . '</a></li>';
                                         }
                                         ?>
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
+                        <!-- <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -112,8 +112,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
+                        </div> -->
+                        <!-- <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree">
                                 <h4 class="panel-title">
                                     <a class="collapsed" data-toggle="collapse" data-parent="#home-accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -227,7 +227,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -239,8 +239,17 @@
     $ktdn='<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  onclick="return confirm(\' Vui lòng đăng nhập\')"  style="background-color: rgb(253,253,253,0.6); border: none;"></a>';
     else $ktdn= '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART"   style="background-color: rgb(253,253,253,0.6); border: none;"></a>
     '; ?>
-                        <?php foreach ($dssp as $sp) {
+                        <?php $phantram=0;
+                        foreach ($dssp as $sp) {
+                            
                             extract($sp);
+                            if ($gia > $giam_gia) {
+                                $a = '<p>Sale</p>';
+                                $b = '<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>';
+                            }else{
+                                $b='<p>$' . $giam_gia . '</p>';
+                            }
+                            $phantram=($giam_gia/$gia)*100;
                             $linksp = "index.php?act=product-detail&id_san_pham=" . $id_san_pham;
                             echo '
                             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -265,14 +274,15 @@
 											</div>
 										</div>
 										<div class="item-new">
-											<p>New</p>
-											<span>-10%</span>
+											
+                                            <p style="background-color: aliceblue; color:black">-'.(100-round($phantram,2)).'%</p>
+											
 										</div>
 										<div class="item-sub">
 										<a href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '">
-										<h5>' . $ten_san_pham . '</h5>
+										<h5>' .substr($ten_san_pham,0,35) . '...</h5>
 									</a>
-									<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>
+									'.$b.'
 										</div>
 										</form>
 									</div> 

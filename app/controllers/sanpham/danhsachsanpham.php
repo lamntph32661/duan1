@@ -41,30 +41,29 @@
                 <?php
                 foreach ($listsanpham as $sanpham) {
                   extract($sanpham);
+                  $a="";
                   $suasp = "index.php?act=capnhatsp&id_san_pham=" . $id_san_pham;
                   $xoasp = "index.php?act=xoasp&id_san_pham=" . $id_san_pham;
-                  $hinhpath = "uploads/" . $hinh;
-                  if (is_file($hinhpath)) {
-                    $img = "<img src='" . $hinhpath . "' height='80'>";
-                  } else {
-                    $img = "no photo";
+                  $binhluansp = "index.php?act=binhluansp&id_san_pham=" . $id_san_pham;
+                  foreach ($listdanhmuc as $danhmuc) {
+                    if($danhmuc['id_danh_muc']==$sanpham['id_danh_muc'])$a=$danhmuc['ten_danh_muc'];
                   }
                   echo '<tr>
     <td>' . $id_san_pham . '</td>
-    <td>' . $ten_san_pham . '</td>
+    <td>' .substr($ten_san_pham,0,25) . '...</td>
     <td><img src="/public/uploads/' . $hinh . '" alt="" height="80"></td>
     <td>' . $gia . '</td>
     <td>' . $giam_gia . '</td>
     <td>' . $mo_ta . '</td>
     <td>' . $so_luong . '</td>
-    <td>' . $id_danh_muc . '</td>
-
+    <td>' . substr($a,0,15) . '</td>
     <td><a href="' . $suasp . '" ><input type="button" class="btn btn-success" value="Sửa"></a>
+    <a href="' . $binhluansp . '" ><input type="button" class="btn btn-secondary" value="Bình luận"></a>
     <a href="' . $xoasp . '"><input type="button" class="btn btn-danger" value="Xóa" onclick="return confirm(\' Bạn có muốn xóa không\')"></a>
     </tr>';
                 }
                 ?>
-                <img src="" alt="">
+                
               </tbody>
             </table>
           </form>

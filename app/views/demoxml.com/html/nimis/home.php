@@ -8,20 +8,20 @@
 					<li data-transition="random" data-slotamount="7" data-masterspeed="1000">
 						<a href="index.php?act=sanpham&id_danh_muc=<?= $banner['link'] ?>">
 							<img src="/public/uploads/<?= $banner['hinh'] ?>" alt="slide" style="width: 1920px; height: 650px;">
-</a>
-							<div class="tp-caption large_black sfr" data-x="120" data-y="140" data-speed="1100" data-start="1100" data-easing="easeInOutBack" style="font-size: 95px; font-weight: normal; text-transform: inherit; color: #ff6766;font-family: manustrialmanustrial;font-style:italic;text-shadow:0px 0px 3px #000;">
-								<?= $banner['ten_banner'] ?>
-							</div>
-							<div class="tp-caption large_black sfr" data-x="120" data-y="230" data-speed="1100" data-start="1400" data-easing="easeInOutBack" style="font-family: 'Montserrat', sans-serif; font-size: 68px; font-weight: 700; line-height:80px;text-transform: uppercase; color: #232323; text-shadow: 0 0 3px #fff">
-								20015 collection
-							</div>
-							<div class="tp-caption large_black sfr carousel-caption-inner" data-x="120" data-y="300" data-speed="1100" data-start="1400" data-easing="easeInOutBack">
-								<img src="images/sep-b.png" alt="" />
-							</div>
-							<div class="tp-caption lfb carousel-caption-inner" data-x="120" data-y="350" data-speed="1300" data-start="1700" data-easing="easeInOutBack" style="font-family: cabin Sans; font-size: 17px; font-weight: bold; text-transform: uppercase; color: #232323;">
-								get upto 50% offer for order over $499!
-							</div>
-						
+						</a>
+						<div class="tp-caption large_black sfr" data-x="120" data-y="140" data-speed="1100" data-start="1100" data-easing="easeInOutBack" style="font-size: 95px; font-weight: normal; text-transform: inherit; color: #ff6766;font-family: manustrialmanustrial;font-style:italic;text-shadow:0px 0px 3px #000;">
+							<?= $banner['ten_banner'] ?>
+						</div>
+						<div class="tp-caption large_black sfr" data-x="120" data-y="230" data-speed="1100" data-start="1400" data-easing="easeInOutBack" style="font-family: 'Montserrat', sans-serif; font-size: 68px; font-weight: 700; line-height:80px;text-transform: uppercase; color: #232323; text-shadow: 0 0 3px #fff">
+							20015 collection
+						</div>
+						<div class="tp-caption large_black sfr carousel-caption-inner" data-x="120" data-y="300" data-speed="1100" data-start="1400" data-easing="easeInOutBack">
+							<img src="images/sep-b.png" alt="" />
+						</div>
+						<div class="tp-caption lfb carousel-caption-inner" data-x="120" data-y="350" data-speed="1300" data-start="1700" data-easing="easeInOutBack" style="font-family: cabin Sans; font-size: 17px; font-weight: bold; text-transform: uppercase; color: #232323;">
+							get upto 50% offer for order over $499!
+						</div>
+
 					</li>
 				<?php
 				endforeach
@@ -104,7 +104,7 @@
 		</div>
 	</div>
 </div>
-<section class="promotion_area">
+<!-- <section class="promotion_area">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -177,7 +177,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <section class="trending_area">
 	<div class="container">
 		<div class="row">
@@ -208,9 +208,16 @@
     '; ?>
 									<?php
 									$i = 0;
+									$a = '';
+									$b = '';
 									foreach ($spnew as $sp) {
 										extract($sp);
-
+										if ($gia > $giam_gia) {
+											$a = '<p>Sale</p>';
+											$b = '<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>';
+										}else{
+											$b='<p>$' . $giam_gia . '</p>';
+										}
 										$linksp = "index.php?act=sanphamct&id_san_pham=" . $id_san_pham;
 										echo '
 							
@@ -234,13 +241,13 @@
 											</div>
 										</div>
 										<div class="item-new">
-											<p>Sale</p>
+											' . $a . '
 										</div>
 										<div class="item-sub">
 											<a href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '">
-												<h5>' . $ten_san_pham . '</h5>
+												<h5>' . substr($ten_san_pham, 0, 30) . '...</h5>
 											</a>
-											<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>
+											'.$b.'
 										</div>
 									</form>
 							</div>';
@@ -254,25 +261,33 @@
 							<div role="tabpanel" class="tab-pane" id="profile">
 								<div id="owl-example-two" class="owl-carousel">
 									<?php
+									$ktdn = "";
+									if (!isset($_SESSION['user']))
+										$ktdn = '<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  style="background-color: rgb(253,253,253,0.6); border: none;" onclick="return confirm(\' Vui lòng đăng nhập\')"></a>';
+									else $ktdn = '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART" style="background-color: rgb(253,253,253,0.6); border: none;" ></a>
+    '; ?>
+									<?php
 									$i = 0;
+									$a = '';
 									foreach ($spnew as $sp) {
 										extract($sp);
-										$img = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/" . $hinh;
-										if ($i == 3 || $i == 6 || $i == 9) {
-											$mr = "";
-										} else {
-											$mr = "mr";
-										}
+										if ($gia > $giam_gia) $a = '<p>Sale</p>';
 										$linksp = "index.php?act=sanphamct&id_san_pham=" . $id_san_pham;
 										echo '
 							
 									<div class="item">
 										<div class="item-img">
+										<form action="index.php?act=addtocart" method="post">
+							<input type="hidden" name="id_san_pham" value="' . $id_san_pham . '">
+							<input type="hidden" name="ten_san_pham" value="' . $ten_san_pham . '">
+							<input type="hidden" name="hinh" value="' . $hinh . '">
+							<input type="hidden" name="linksp" value="' . $linksp . '">	
+							<input type="hidden" name="giam_gia" value="' . $giam_gia . '">	
                                         <a href="' . $linksp . '"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
-													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-													<li><a class="tr_text" href="#">ADD TO CART</a></li>
+													
+													<li>' . $ktdn . '</li>
 													<li><a class="fa fa-heart tr_heart" href="#"></a></li>
 													<li><a class="fa fa-search tr_search"
 															href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '"></a></li>
@@ -280,15 +295,15 @@
 											</div>
 										</div>
 										<div class="item-new">
-											<p>Sale</p>
+											' . $a . '
 										</div>
 										<div class="item-sub">
 											<a href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '">
-												<h5>' . $ten_san_pham . '</h5>
+												<h5>' . substr($ten_san_pham, 0, 30) . '...</h5>
 											</a>
 											<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>
 										</div>
-									
+									</form>
 							</div>';
 										$i++;
 									}
@@ -299,25 +314,33 @@
 							<div role="tabpanel" class="tab-pane" id="messages">
 								<div id="owl-example-three" class="owl-carousel">
 									<?php
+									$ktdn = "";
+									if (!isset($_SESSION['user']))
+										$ktdn = '<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  style="background-color: rgb(253,253,253,0.6); border: none;" onclick="return confirm(\' Vui lòng đăng nhập\')"></a>';
+									else $ktdn = '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART" style="background-color: rgb(253,253,253,0.6); border: none;" ></a>
+    '; ?>
+									<?php
 									$i = 0;
+									$a = '';
 									foreach ($spnew as $sp) {
 										extract($sp);
-										$img = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/" . $hinh;
-										if ($i == 3 || $i == 6 || $i == 9) {
-											$mr = "";
-										} else {
-											$mr = "mr";
-										}
+										if ($gia > $giam_gia) $a = '<p>Sale</p>';
 										$linksp = "index.php?act=sanphamct&id_san_pham=" . $id_san_pham;
 										echo '
 							
 									<div class="item">
 										<div class="item-img">
+										<form action="index.php?act=addtocart" method="post">
+							<input type="hidden" name="id_san_pham" value="' . $id_san_pham . '">
+							<input type="hidden" name="ten_san_pham" value="' . $ten_san_pham . '">
+							<input type="hidden" name="hinh" value="' . $hinh . '">
+							<input type="hidden" name="linksp" value="' . $linksp . '">	
+							<input type="hidden" name="giam_gia" value="' . $giam_gia . '">	
                                         <a href="' . $linksp . '"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
-													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-													<li><a class="tr_text" href="#">ADD TO CART</a></li>
+													
+													<li>' . $ktdn . '</li>
 													<li><a class="fa fa-heart tr_heart" href="#"></a></li>
 													<li><a class="fa fa-search tr_search"
 															href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '"></a></li>
@@ -325,15 +348,15 @@
 											</div>
 										</div>
 										<div class="item-new">
-											<p>Sale</p>
+											' . $a . '
 										</div>
 										<div class="item-sub">
 											<a href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '">
-												<h5>' . $ten_san_pham . '</h5>
+												<h5>' . substr($ten_san_pham, 0, 30) . '...</h5>
 											</a>
 											<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>
 										</div>
-									
+									</form>
 							</div>';
 										$i++;
 									}
@@ -344,25 +367,33 @@
 							<div role="tabpanel" class="tab-pane" id="settings">
 								<div id="owl-example-four" class="owl-carousel">
 									<?php
+									$ktdn = "";
+									if (!isset($_SESSION['user']))
+										$ktdn = '<a href="/app/views/demoxml.com/html/nimis/login-form-20/login.php" class="tr_text"><input type="button" name="btnaddcart" value="ADD TO CART"  style="background-color: rgb(253,253,253,0.6); border: none;" onclick="return confirm(\' Vui lòng đăng nhập\')"></a>';
+									else $ktdn = '<a href="#" class="tr_text"><input type="submit" name="btnaddcart" value="ADD TO CART" style="background-color: rgb(253,253,253,0.6); border: none;" ></a>
+    '; ?>
+									<?php
 									$i = 0;
+									$a = '';
 									foreach ($spnew as $sp) {
 										extract($sp);
-										$img = "C:/Users/PC TGDD/Desktop/duan1/public/assets/uploads/" . $hinh;
-										if ($i == 3 || $i == 6 || $i == 9) {
-											$mr = "";
-										} else {
-											$mr = "mr";
-										}
+										if ($gia > $giam_gia) $a = '<p>Sale</p>';
 										$linksp = "index.php?act=sanphamct&id_san_pham=" . $id_san_pham;
 										echo '
 							
 									<div class="item">
 										<div class="item-img">
+										<form action="index.php?act=addtocart" method="post">
+							<input type="hidden" name="id_san_pham" value="' . $id_san_pham . '">
+							<input type="hidden" name="ten_san_pham" value="' . $ten_san_pham . '">
+							<input type="hidden" name="hinh" value="' . $hinh . '">
+							<input type="hidden" name="linksp" value="' . $linksp . '">	
+							<input type="hidden" name="giam_gia" value="' . $giam_gia . '">	
                                         <a href="' . $linksp . '"><img src="/public/uploads/' . $hinh . '" alt=""  style="width: 220px; height: 263px;"></a>
 											<div class="tr-add-cart">
 												<ul>
-													<li><a class="fa fa-shopping-cart tr_cart" href="#"></a></li>
-													<li><a class="tr_text" href="#">ADD TO CART</a></li>
+													
+													<li>' . $ktdn . '</li>
 													<li><a class="fa fa-heart tr_heart" href="#"></a></li>
 													<li><a class="fa fa-search tr_search"
 															href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '"></a></li>
@@ -370,15 +401,15 @@
 											</div>
 										</div>
 										<div class="item-new">
-											<p>Sale</p>
+											' . $a . '
 										</div>
 										<div class="item-sub">
 											<a href="index.php?act=product-detail&id_san_pham=' . $id_san_pham . '">
-												<h5>' . $ten_san_pham . '</h5>
+												<h5>' . substr($ten_san_pham, 0, 30) . '...</h5>
 											</a>
 											<p>$' . $giam_gia . '<span><del>$' . $gia . '</del></span></p>
 										</div>
-									
+									</form>
 							</div>';
 										$i++;
 									}
@@ -395,7 +426,7 @@
 </section>
 
 
-<section class="fresh_blog_area">
+<!-- <section class="fresh_blog_area">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -405,7 +436,7 @@
 
 					<div id="blog-caro" class="carousel slide" data-ride="carousel">
 
-						<!-- Wrapper for slides -->
+						
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
 								<div class="row">
@@ -509,7 +540,7 @@
 							</div>
 						</div>
 
-						<!-- Controls -->
+						
 						<a class="left carousel-control" href="#blog-caro" role="button" data-slide="prev">
 							<i class='fa fa-angle-left'></i>
 						</a>
@@ -524,7 +555,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <section class="testimonial_area">
 	<div class="container">

@@ -11,3 +11,9 @@ function loaduser($id)
     $sp = pdo_query_one($sql);
     return $sp;
 }
+function loadall_roles_user()
+{
+    $sql = "select * from role where 1";
+    $sp = pdo_query($sql);
+    return $sp;
+}

@@ -43,12 +43,13 @@ if (is_array($sanpham)) {
           <!-- <input type="file" name="hinh" id=""> -->
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá sản phẩm" name="giasp" value="<?=$gia?>" required>
+          <label for="exampleInputPassword1">Giá gốc</label>
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá gốc của sản phẩm" name="giasp" value="<?=$gia?>" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Giảm giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giảm giá sản phẩm" name="giamgiasp" value="<?=$giam_gia?>" required>
+          <label for="exampleInputPassword1">Giá đã giảm</label>
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá đã giảm của sản phẩm" name="giamgiasp" value="<?=$giam_gia?>" required>
+          <?=$errthemsp?>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Mô tả</label>

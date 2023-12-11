@@ -38,12 +38,13 @@
           <!-- <input type="file" name="hinh" id=""> -->
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá sản phẩm" name="giasp" required>
+          <label for="exampleInputPassword1">Giá gốc</label>
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá gốc sản phẩm" name="giasp" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Giảm giá</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giảm giá sản phẩm" name="giamgiasp" required>
+          <label for="exampleInputPassword1">Giá đã giảm</label>
+          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Nhập giá đã giảm sản phẩm" name="giamgiasp" required>
+          <?=$errthemsp?>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Mô tả</label>

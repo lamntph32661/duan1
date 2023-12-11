@@ -13,7 +13,7 @@ function loadall_donhang_chuanhan($id)
 }
 function loadall_donhang_danhan_dahuy($id)
 {
-    $sql = "SELECT * FROM `don_hang` WHERE trang_thai like 'Đã nhận' or trang_thai like 'Đã hủy' AND id_nguoi_dung =".$id;
+    $sql = "SELECT * FROM `don_hang` WHERE (trang_thai like 'Đã nhận' or trang_thai like 'Đã hủy') AND id_nguoi_dung =".$id;
     $dh = pdo_query($sql);
     return $dh;
 }
@@ -40,9 +40,10 @@ function delete_donhang($id)
 }
 function loadall_donhang_admin_chuanhan()
 {
-    $sql = "SELECT don_hang.id_don_hang,don_hang.ghi_chu,don_hang.ten_nguoi_nhan, nguoi_dung.ho_ten, don_hang.ngay_dat_hang, don_hang.tong_tien, don_hang.trang_thai
+    $sql = "SELECT don_hang.id_don_hang, don_hang.ghi_chu, don_hang.ten_nguoi_nhan, nguoi_dung.ho_ten, don_hang.ngay_dat_hang, don_hang.tong_tien, don_hang.trang_thai
     FROM don_hang 
-    JOIN nguoi_dung ON don_hang.id_nguoi_dung = nguoi_dung.id_nguoi_dung where don_hang.trang_thai <> 'Đã nhận' or don_hang.trang_thai <> 'Đã hủy'";
+    JOIN nguoi_dung ON don_hang.id_nguoi_dung = nguoi_dung.id_nguoi_dung 
+    WHERE don_hang.trang_thai <> 'Đã nhận' AND don_hang.trang_thai <> 'Đã hủy';";
     $dh = pdo_query($sql);
     return $dh;
 }
