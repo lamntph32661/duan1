@@ -263,6 +263,7 @@ insert_binhluan($id_san_pham, $loai_danh_gia, $noi_dung, $id_nguoi_dung, $ngaybi
                 
                     $onesp = loadone_sanpham($id_san_pham);
                     extract($onesp);
+                    $listnguoidung=loadall_nguoi_dung();
                     $listbinhluan=loadall_binhluan($id_san_pham);
                     $sp_cung_loai = load_sanpham_cungloai($id_san_pham, $id_danh_muc);
                     include "product-detail.php";

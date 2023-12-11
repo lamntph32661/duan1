@@ -270,6 +270,7 @@ $linksp = "index.php?act=product-detail&id_san_pham=" . $id_san_pham;
 												if ($binhluan['loai_danh_gia'] == 3) $a = "Không hài lòng";
 												if ($binhluan['loai_danh_gia'] == 4) $a = "Hài lòng";
 												if ($binhluan['loai_danh_gia'] == 5) $a = "Rất hài lòng";
+												if ($binhluan['loai_danh_gia'] == 6) $a = "Chưa mua";
 												?>
 												<p><?= $a ?></p>
 												<p><?= $binhluan['noi_dung'] ?></p>
@@ -334,6 +335,7 @@ $guibinhluan='';
 												<option value="3">Không hài lòng</option>
 												<option value="4">Hài lòng</option>
 												<option value="5">Rất hài lòng</option>
+												<option value="6">Chưa mua</option>
 											</select><br>
 
 											<textarea name="noidung" id="" cols="30" rows="10" placeholder="Write your review"></textarea><br>
